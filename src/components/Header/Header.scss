@@ -3,6 +3,10 @@ a {
     color: black;
 }
 
+li {
+    list-style: none;
+}
+
 header {
     border-bottom: 1px solid #70707036;
 }
@@ -58,5 +62,81 @@ header {
         .search-input:focus+.search-icon {
             right: -15px;
         }
+    }
+
+    .dropdown {
+        position: absolute;
+        top: 53px;
+        width: 20%;
+        right: 7%;
+        background-color: #F6F7F8;
+        opacity: 0;
+        visibility: hidden;
+        z-index: -1;
+        transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+
+        @media(max-width:767px) {
+            .dropdown {
+                width: 100%;
+
+            }
+        }
+
+        ul {
+            padding: 4px 4px 0px 4px;
+            margin-bottom: 2px;
+        }
+
+        ul li {
+            padding-left: 5px;
+            border-bottom: 1px solid #cdcdcd;
+            position: relative;
+        }
+
+        ul li:first-child::before,
+        ul li:first-child::after,
+        ul li:nth-child(2)::before,
+        ul li:nth-child(2)::after {
+            content: "";
+            position: absolute;
+            width: 19px;
+            height: 2px;
+            background-color: red;
+            right: 15px;
+        }
+
+        ul li:first-child::before,
+        ul li:nth-child(2)::before {
+            top: 35%;
+            transform: rotate(31deg);
+        }
+
+        ul li:first-child::after,
+        ul li:nth-child(2)::after {
+            bottom: 41px;
+            transform: rotate(-31deg);
+        }
+
+    }
+
+    .dropdown.show {
+        opacity: 1;
+        visibility: visible;
+        z-index: 100;
+        transition: opacity 0.3s ease, visibility 0s linear;
+    }
+
+    @media(max-width:767px) {
+        .dropdown {
+            width: 100%;
+            left: 0;
+            opacity: 0.6;
+        }
+    }
+
+    .buttons .btn {
+        width: 50%;
+        height: 41px;
+        border-radius: 0;
     }
 }

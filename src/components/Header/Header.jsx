@@ -1,17 +1,34 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./Header.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
+
 function Header() {
   const [isSearchActive, setIsSearchActive] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
 
   const handleFocus = () => setIsSearchActive(true);
   const handleBlur = () => setIsSearchActive(false);
+  const toggleDropdown = () => setIsDropdownOpen((prev) => !prev);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
-    <header className="navbar navbar-expand-lg  p-2">
+    <header className="navbar navbar-expand-lg p-2 position-relative">
       <div className="container d-flex justify-content-between align-items-center">
         <div className="LangAndCurrency d-flex align-items-center gap-2">
           <div className="language">
@@ -47,10 +64,40 @@ function Header() {
             <FontAwesomeIcon icon={faUser} size="sm" />
             <a href="#">My Profile</a>
           </div>
-          <div className="cart d-flex gap-2">
-            <div className="">
+          <div className="cart d-flex gap-2" ref={dropdownRef}>
+            <div className="drop" onClick={toggleDropdown}>
               <a href="#">0 items</a>
             </div>
+            {isDropdownOpen && (
+              <div className="dropdown position-absolute show">
+                <ul className="product">
+                  <li>
+                    <p>Samsung A 16</p>
+                    <p>$450 </p>
+                  </li>
+                  <li>
+                    <p>Samsung A 16</p>
+                    <p>$450 </p>
+                  </li>
+                  <li className="d-flex justify-content-between p-2">
+                    <p>Shipping</p>
+                    <p>free</p>
+                  </li>
+                  <li className="d-flex justify-content-between p-2">
+                    <p>Total</p>
+                    <p>$900</p>
+                  </li>
+                </ul>
+                <div className="buttons d-flex">
+                  <button type="button" className="btn btn-light width-50">
+                    Cart
+                  </button>
+                  <button type="button" className="btn btn-primary width-50">
+                    Check Out
+                  </button>
+                </div>
+              </div>
+            )}
             <div className="pl-2">
               <a href="#">$0,00</a>
             </div>
