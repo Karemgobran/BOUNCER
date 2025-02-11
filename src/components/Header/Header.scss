@@ -1,0 +1,62 @@
+a {
+    text-decoration: none;
+    color: black;
+}
+
+header {
+    border-bottom: 1px solid #70707036;
+}
+
+.form-select:focus {
+    border-color: transparent;
+    box-shadow: none;
+}
+
+.LangAndCurrency select {
+    border: none;
+}
+
+.collapse {
+    justify-content: end;
+
+    >div {
+        padding-right: 35px;
+    }
+
+    .Account {
+        svg {
+            padding-right: 5px;
+        }
+    }
+
+    .search {
+        position: relative;
+        cursor: pointer;
+
+        .search-input {
+            height: 30px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 50%;
+            width: 40px;
+            transition: width 0.3s ease, border-radius 0.3s ease;
+        }
+
+        .search-input.active {
+            width: 100%;
+            border-radius: 4px;
+            border-color: #eee;
+            outline: none;
+        }
+
+        .search-icon {
+            top: 50%;
+            transform: translate(-172%, -50%);
+            cursor: pointer;
+        }
+
+        .search-input:focus+.search-icon {
+            right: -15px;
+        }
+    }
+}
