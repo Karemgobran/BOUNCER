@@ -1,0 +1,27 @@
+nav {
+    text-align: center;
+    margin-top: 48px;
+
+    .links {
+
+        ul {
+            display: flex;
+            justify-content: center;
+            margin-top: 25px;
+
+            li {
+                margin-right: 3%;
+                text-transform: uppercase;
+                font-weight: 500;
+
+                &:hover a {
+                    color: rgb(51, 160, 255)
+                }
+
+                .active {
+                    color: rgb(51, 160, 255)
+                }
+            }
+        }
+    }
+}
