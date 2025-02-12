@@ -1,0 +1,48 @@
+.banner {
+    background-color: rgb(51, 160, 255);
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 30px;
+
+
+    .image {
+        margin-left: 25%;
+
+        img {
+            max-width: 100%;
+        }
+    }
+
+    .info {
+
+        .product-name {
+            font-size: 50px;
+            margin-bottom: 25px;
+
+        }
+
+        .shop {
+            border-bottom: 2px solid white;
+            width: fit-content;
+            transition: 0.3s ease-in-out;
+
+            &:hover {
+                border-bottom-color: rgb(186, 153, 153);
+            }
+        }
+    }
+
+    @media (max-width:767px) {
+        &>div {
+            padding-top: 30px;
+            text-align: center;
+            flex-direction: column;
+
+            .shop {
+                margin-left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+    }
+}
