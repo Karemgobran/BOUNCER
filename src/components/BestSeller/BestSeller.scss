@@ -1,0 +1,148 @@
+.best-seller {
+    margin-top: 50px;
+
+    h2 {
+        color: #22262A;
+    }
+
+    .more {
+        margin-top: 30px;
+        font-size: medium;
+        font-weight: 500;
+        border-bottom: 2px solid;
+        width: fit-content;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        color: #007bff;
+        transition: 0.3s ease-in-out;
+
+        &:hover {
+            color: gray;
+        }
+    }
+
+    .categories {
+        button {
+            border-radius: 20px;
+            padding: 10px 15px;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            // box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+            font-weight: 600;
+
+            &:hover,
+            &.active {
+                background-color: #007bff;
+                color: white;
+                border-color: #007bff;
+            }
+        }
+
+
+    }
+
+    .products-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        padding-bottom: 10px;
+
+        @media (max-width: 768px) {
+            overflow-x: auto;
+            flex-wrap: nowrap;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: none;
+
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+    }
+
+    .product-card {
+        flex: 0 0 auto;
+        width: 250px;
+        transition: transform 0.3s ease-in-out;
+        border-radius: 10px;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-right: 35px;
+
+        @media (max-width: 768px) {
+            & {
+                margin-right: 0;
+            }
+        }
+
+        &:hover {
+            transform: scale(1.05);
+        }
+
+        .card-img-top {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .card-body {
+            text-align: center;
+
+            .card-title {
+                font-size: 18px;
+                font-weight: bold;
+                color: #333;
+            }
+
+            .price {
+                margin-top: 10px;
+                font-size: 18px;
+                display: flex;
+                justify-content: center;
+                gap: 10px;
+
+                .new-price {
+                    color: red;
+                    font-weight: bold;
+                }
+
+                .old-price {
+                    text-decoration: line-through;
+                    color: gray;
+                }
+            }
+        }
+    }
+
+    .scroll-btn {
+        display: none;
+
+        @media (max-width: 768px) {
+            display: block;
+            background: rgba(0, 0, 0, 0.2);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            position: absolute;
+            z-index: 10;
+            cursor: pointer;
+            transition: all 0.3s ease;
+
+            &:hover {
+                background: rgba(0, 0, 0, 0.5);
+            }
+        }
+    }
+
+    .scroll-btn.left {
+        left: 10px;
+        top: 50%;
+    }
+
+    .scroll-btn.right {
+        right: 10px;
+        top: 50%;
+    }
+}
