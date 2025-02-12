@@ -1,4 +1,4 @@
-import logo from "../../assets/images/logoo.png"; // استيراد الصورة بشكل صحيح
+import logo from "../../assets/images/logoo.png";
 import "./Navbar.scss";
 
 function Navbar() {

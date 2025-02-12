@@ -23,5 +23,11 @@ nav {
                 }
             }
         }
+
+        @media (max-width:767px) {
+            ul {
+                margin-right: 18px;
+            }
+        }
     }
 }

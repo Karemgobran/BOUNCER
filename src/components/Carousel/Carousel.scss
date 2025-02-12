@@ -1,0 +1,40 @@
+.parent {
+    background: linear-gradient(-25deg, #FF4858, #AE5DD0, #8F65FF);
+    margin-top: 70px;
+
+    .carousel-item {
+        padding-left: 100px;
+        padding-right: 100px;
+
+        h2 {
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        p {
+            margin-bottom: 30px;
+        }
+
+        a {
+            color: white;
+            border-bottom: 2px solid white;
+            font-weight: bold;
+            transition: color 0.3s ease, border-bottom 0.3s ease;
+
+            &:hover {
+                border-bottom: 2px solid #FF4858;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .data {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    }
+
+    .arrow {
+        width: 40px;
+    }
+}
