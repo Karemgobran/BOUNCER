@@ -10,12 +10,20 @@ nav {
             margin-top: 25px;
 
             li {
+                padding: 4px;
                 margin-right: 3%;
                 text-transform: uppercase;
                 font-weight: 500;
 
+                a {
+                    transition: 0.2s ease-in-out;
+                }
+
                 &:hover a {
-                    color: rgb(51, 160, 255)
+                    color: rgb(51, 160, 255);
+                    border-bottom: 2px solid;
+
+
                 }
 
                 .active {
@@ -26,7 +34,8 @@ nav {
 
         @media (max-width:767px) {
             ul {
-                margin-right: 18px;
+                margin: 0;
+                flex-wrap: wrap;
             }
         }
     }
