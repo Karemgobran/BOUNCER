@@ -59,22 +59,28 @@ function BestSeller() {
       </nav>
 
       <div
-        className="products-container justify-content-center"
+        className="products-container d-flex justify-content-center"
         ref={scrollRef}
       >
         {displayedProducts.map((product) => (
           <div
             key={product.id}
-            className="product-card card shadow-sm border-0 p-3"
+            className="product-card card shadow-sm border-0 p-3 overflow-hidden "
           >
-            <img
-              src={product.img}
-              className="card-img-top"
-              alt={product.name}
-            />
+            <div className="image overflow-hidden position-relative">
+              <img
+                src={product.img}
+                className="card-img-top w-100"
+                alt={product.name}
+              />
+              <div className="Card-hover d-flex justify-content-center w-100 h-100 gap-2 position-absolute align-items-center">
+                <i className="bx bx-heart"></i>
+                <i className="bx bx-cart-alt"></i>
+              </div>
+            </div>
             <div className="card-body text-center">
               <h5 className="card-title">{product.name}</h5>
-              <div className="price">
+              <div className="price d-flex">
                 <span className="new-price">${product.price}</span>
                 <span className="old-price">${product.oldPrice}</span>
               </div>
