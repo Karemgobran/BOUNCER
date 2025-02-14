@@ -4,7 +4,7 @@ import refund from "../../assets/images/refund.png";
 import support from "../../assets/images/support.png";
 function Features() {
   return (
-    <div className="features container">
+    <div className="features container d-flex justify-content-between text-center">
       <div className="feature">
         <img className="mb-3" src={support} alt="shipping" />
         <h3>FREE SHIPPING</h3>
