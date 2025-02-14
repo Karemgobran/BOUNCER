@@ -21,7 +21,6 @@ header {
 }
 
 .collapse {
-    justify-content: end;
 
     >div {
         padding-right: 35px;
@@ -34,7 +33,6 @@ header {
     }
 
     .search {
-        position: relative;
         cursor: pointer;
 
         .search-input {
@@ -65,7 +63,6 @@ header {
     }
 
     .dropdown {
-        position: absolute;
         top: 53px;
         width: 20%;
         right: 7%;

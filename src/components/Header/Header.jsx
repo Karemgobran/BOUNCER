@@ -59,7 +59,10 @@ function Header() {
           <span className="navbar-toggler-icon"></span>
         </button>
 
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <div
+          className="collapse navbar-collapse justify-content-end"
+          id="navbarSupportedContent"
+        >
           <div className="Account">
             <FontAwesomeIcon icon={faUser} size="sm" />
             <a href="#">My Profile</a>
@@ -69,7 +72,7 @@ function Header() {
               <a href="#">0 items</a>
             </div>
             {isDropdownOpen && (
-              <div className="dropdown position-absolute show">
+              <div className="dropdown   position-absolute show">
                 <ul className="product">
                   <li>
                     <p>Samsung A 16</p>
