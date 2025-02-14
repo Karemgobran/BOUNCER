@@ -49,7 +49,7 @@ function Footer() {
           ].map((section, index) => (
             <div key={index} className="col-md-4 col-lg-2">
               <h6>{section}</h6>
-              <ul className="list-unstyled">
+              <ul className="list-unstyled p-0 ">
                 <li>
                   <a href="#" className="text-muted text-decoration-none">
                     About Us
