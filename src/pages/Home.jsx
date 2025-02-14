@@ -5,6 +5,7 @@ import BestSeller from "../components/BestSeller/BestSeller";
 import Banner from "../components/Banner/Banner";
 import Features from "../components/Features/Features";
 import LatestNews from "../components/LatestNews/LatestNews";
+import FeaturedProducts from "../components/FeaturedProducts/FeaturedProducts";
 
 function Home() {
   return (
@@ -16,6 +17,7 @@ function Home() {
       <Banner />
       <Features />
       <LatestNews />
+      <FeaturedProducts />
     </>
   );
 }

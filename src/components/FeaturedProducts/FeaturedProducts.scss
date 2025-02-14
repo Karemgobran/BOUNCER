@@ -1,0 +1,53 @@
+.featured-products {
+
+    margin-top: 100px;
+
+    .section-title {
+        color: #22262A;
+        margin-bottom: 30px;
+    }
+
+    .product-card {
+        gap: 20px;
+
+
+
+        .product-img {
+            max-width: fit-content;
+        }
+
+        .product-info {
+            flex-grow: 1;
+
+            .product-title {
+                font-size: 16px;
+                font-weight: bold;
+                color: #333;
+                margin-bottom: 5px;
+            }
+
+            .rating {
+                color: #ffa500;
+                font-size: 18px;
+                margin-bottom: 5px;
+            }
+
+            .price {
+                display: flex;
+                gap: 10px;
+                font-size: 18px;
+                margin-top: 5px;
+
+                .new-price {
+                    color: red;
+                    font-weight: bold;
+                }
+
+                .old-price {
+                    text-decoration: line-through;
+                    color: gray;
+                }
+            }
+        }
+    }
+}
