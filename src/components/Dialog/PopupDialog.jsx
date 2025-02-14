@@ -4,7 +4,7 @@ import image from "../../assets/images/img.png";
 function PopupDialog({ showDialog, closeDialog }) {
   return (
     showDialog && (
-      <dialog className="dialog-overlay">
+      <dialog className="dialog-overlay position-fixed top-0 end-0 w-100 h-100 d-flex justify-content-center align-items-center z-3">
         <div className="popup-overlay d-flex justify-content-center align-items-center">
           <div className="popup-box position-relative rounded shadow-lg bg-white">
             <button
@@ -15,7 +15,7 @@ function PopupDialog({ showDialog, closeDialog }) {
               <i className="bx bx-x fs-3 "></i>
             </button>
             <div className="popup-content d-flex">
-              <div className="popup-text text-center p-4">
+              <div className="popup-text text-center p-4 d-flex flex-column justify-content-evenly">
                 <h2 className="fw-bold p-2">Newsletter</h2>
                 <p>
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
@@ -27,7 +27,7 @@ function PopupDialog({ showDialog, closeDialog }) {
                     className="form-control "
                     placeholder="Email"
                   />
-                  <button className="btn SubscribeBtn">Subscribe</button>
+                  <button className="btn SubscribeBtn ">Subscribe</button>
                 </div>
                 <div className="form-check mt-3 mb-3 d-flex gap-1 justify-content-center">
                   <input className="form-check-input" type="checkbox" />
@@ -36,7 +36,7 @@ function PopupDialog({ showDialog, closeDialog }) {
                   </label>
                 </div>
               </div>
-              <div className="popup-image">
+              <div className="popup-image position-relative w-100">
                 <img src={image} alt="Gift" className="img-fluid rounded" />
               </div>
             </div>
