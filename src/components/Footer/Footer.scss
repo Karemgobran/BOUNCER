@@ -1,0 +1,50 @@
+/* Footer.scss */
+
+.footer {
+    background: #f8f9fa;
+    padding: 40px 0;
+
+    .logo {
+        filter: grayscale(1);
+    }
+
+    .brand {
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+
+    .social-icons {
+        display: flex;
+        gap: 10px;
+        font-size: 1.5rem;
+    }
+
+    ul {
+        padding: 0;
+        list-style: none;
+
+        li {
+            margin-bottom: 5px;
+            color: #6c757d;
+            cursor: pointer;
+
+            &:hover {
+                color: rgb(149, 147, 147);
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .payment-icons {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        cursor: pointer;
+
+        img {
+            width: 250px;
+        }
+
+    }
+
+}

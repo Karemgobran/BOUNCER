@@ -7,6 +7,7 @@ import Features from "../components/Features/Features";
 import LatestNews from "../components/LatestNews/LatestNews";
 import FeaturedProducts from "../components/FeaturedProducts/FeaturedProducts";
 import SearchButton from "../components/Search Button/SearchButton";
+import Footer from "../components/Footer/Footer";
 
 function Home() {
   return (
@@ -20,6 +21,7 @@ function Home() {
       <LatestNews />
       <FeaturedProducts />
       <SearchButton />
+      <Footer />
     </>
   );
 }
