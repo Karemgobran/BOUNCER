@@ -3,12 +3,12 @@ import "./Navbar.scss";
 
 function Navbar() {
   return (
-    <nav className="container Navbar">
+    <nav className="container Navbar text-center">
       <div className="logo">
         <img src={logo} alt="logo" />
       </div>
       <div className="links">
-        <ul>
+        <ul className="d-flex justify-content-center">
           <li>
             <a className="active" href="#">
               home
