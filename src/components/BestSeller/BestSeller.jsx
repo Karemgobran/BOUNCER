@@ -7,12 +7,15 @@ import products from "../../data/products";
 
 function BestSeller() {
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [visibleProducts, setVisibleProducts] = useState(8);
   const scrollRef = useRef(null);
 
   const filteredProducts =
     selectedCategory === "All"
       ? products
       : products.filter((product) => product.category === selectedCategory);
+
+  const displayedProducts = filteredProducts.slice(0, visibleProducts);
 
   const scroll = (direction) => {
     if (scrollRef.current) {
@@ -25,6 +28,14 @@ function BestSeller() {
             : scrollLeft + scrollAmount,
         behavior: "smooth",
       });
+    }
+  };
+
+  const toggleLoadMore = () => {
+    if (visibleProducts >= filteredProducts.length) {
+      setVisibleProducts(8);
+    } else {
+      setVisibleProducts((prev) => prev + 4);
     }
   };
 
@@ -48,7 +59,7 @@ function BestSeller() {
       </nav>
 
       <div className="products-container" ref={scrollRef}>
-        {filteredProducts.map((product) => (
+        {displayedProducts.map((product) => (
           <div
             key={product.id}
             className="product-card card shadow-sm border-0 p-3"
@@ -75,10 +86,13 @@ function BestSeller() {
       <button className="scroll-btn right" onClick={() => scroll("right")}>
         <FontAwesomeIcon icon={faArrowRight} />
       </button>
-      <div>
-        <a className="more" href="#">
-          LOAD MORE
-        </a>
+
+      <div className="text-center mt-3">
+        <button className="btn btn-primary" onClick={toggleLoadMore}>
+          {visibleProducts >= filteredProducts.length
+            ? "SHOW LESS"
+            : "LOAD MORE"}
+        </button>
       </div>
     </div>
   );
