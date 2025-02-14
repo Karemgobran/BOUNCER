@@ -2,7 +2,7 @@ import "./Banner.scss";
 import pic from "../../assets/images/pic.png";
 function Banner() {
   return (
-    <div className="banner">
+    <div className="banner align-items-center justify-content-between ">
       <div className="container d-flex align-items-center ">
         <div className="info text-white">
           <p className="product-name">iPhone 6 Plus</p>
@@ -16,7 +16,7 @@ function Banner() {
           </div>
         </div>
         <div className="image">
-          <img src={pic} alt="iPhone 6 Plus" />
+          <img src={pic} alt="iPhone 6 Plus" className="w-100" />
         </div>
       </div>
     </div>
