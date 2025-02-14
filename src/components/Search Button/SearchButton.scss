@@ -1,0 +1,40 @@
+.search-button {
+    padding-top: 50px;
+    padding-bottom: 70px;
+
+    .input-group {
+        display: flex;
+        justify-content: center;
+
+        .input {
+            width: 500px;
+            height: 60px;
+            padding: 0 1rem;
+            font-size: 15px;
+            border: 1px solid #d0d0d0;
+            border-radius: 6px 0 0 6px;
+            background-color: transparent;
+
+            &::placeholder {
+                color: #d0d0d0;
+            }
+        }
+
+        .btn {
+            min-height: 50px;
+            padding: .5em 1em;
+            border: none;
+        }
+
+        .input:focus,
+        .input:focus-visible {
+            border-color: #3898EC;
+            outline: none;
+        }
+
+    }
+
+
+
+
+}
