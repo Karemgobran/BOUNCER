@@ -8,17 +8,11 @@
 
 
     .card {
-        display: flex;
-        flex-direction: row;
         border: none;
         gap: 15px;
     }
 
     .news {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-
         span {
             color: #E5E5E5;
         }
@@ -37,7 +31,6 @@
     margin-top: 70px;
 
     h2 {
-        text-align: center;
         color: #22262A;
         text-transform: uppercase;
     }
