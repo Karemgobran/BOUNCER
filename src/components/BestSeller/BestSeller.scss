@@ -36,8 +36,15 @@
 
     .products-container {
         flex-wrap: wrap;
+        justify-content: center;
         gap: 20px;
         padding-bottom: 10px;
+
+        @media (max-width:767px) {
+            & {
+                justify-content: start;
+            }
+        }
 
         @media (max-width: 768px) {
             overflow-x: auto;

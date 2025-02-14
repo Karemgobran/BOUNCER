@@ -58,10 +58,7 @@ function BestSeller() {
         )}
       </nav>
 
-      <div
-        className="products-container d-flex justify-content-center"
-        ref={scrollRef}
-      >
+      <div className="products-container d-flex " ref={scrollRef}>
         {displayedProducts.map((product) => (
           <div
             key={product.id}
