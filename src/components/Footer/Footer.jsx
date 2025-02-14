@@ -47,7 +47,7 @@ function Footer() {
             "Useful Links",
             "Our Offers",
           ].map((section, index) => (
-            <div key={index} className="col-md-2">
+            <div key={index} className="col-md-4 col-lg-2">
               <h6>{section}</h6>
               <ul className="list-unstyled">
                 <li>

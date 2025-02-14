@@ -6,19 +6,11 @@
     }
 
     .more {
-        margin-top: 30px;
-        font-size: medium;
-        font-weight: 500;
-        border-bottom: 2px solid;
-        width: fit-content;
-        margin-left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        color: #007bff;
+        background-color: rgb(46, 144, 229);
         transition: 0.3s ease-in-out;
 
         &:hover {
-            color: gray;
+            background-color: #165083;
         }
     }
 

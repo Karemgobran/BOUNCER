@@ -25,6 +25,12 @@
             min-height: 50px;
             padding: .5em 1em;
             border: none;
+            background-color: rgb(46, 144, 229);
+            transition: 0.3s ease-in-out;
+
+            &:hover {
+                background-color: #165083;
+            }
         }
 
         .input:focus,

@@ -88,7 +88,7 @@ function BestSeller() {
       </button>
 
       <div className="text-center mt-3">
-        <button className="btn btn-primary" onClick={toggleLoadMore}>
+        <button className="more btn btn-primary" onClick={toggleLoadMore}>
           {visibleProducts >= filteredProducts.length
             ? "SHOW LESS"
             : "LOAD MORE"}
