@@ -3,7 +3,7 @@ import "./SearchButton.scss";
 function SearchButton() {
   return (
     <div className="search-button container">
-      <div className="input-group">
+      <div className="input-group d-flex justify-content-center flex-nowrap">
         <input
           type="search"
           className="input"
