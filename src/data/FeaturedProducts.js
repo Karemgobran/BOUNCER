@@ -1,6 +1,6 @@
-import img_1 from "../assets/images/50050995_530579.png";
-import img_2 from "../assets/images/PR-104-0015-002-8A.png";
-import img_3 from "../assets/images/50050995_530579.png";
+import img_1 from "../../public/images/50050995_530579.png";
+import img_2 from "../../public/images/PR-104-0015-002-8A.png";
+import img_3 from "../../public/images/50050995_530579.png";
 
 const products = [
   {

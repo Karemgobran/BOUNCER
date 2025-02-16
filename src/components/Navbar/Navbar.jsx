@@ -1,4 +1,4 @@
-import logo from "../../assets/images/logoo.png";
+import logo from "../../../public/images/logoo.png";
 import "./Navbar.scss";
 
 function Navbar() {

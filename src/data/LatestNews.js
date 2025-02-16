@@ -1,6 +1,6 @@
-import img_1 from "../assets/images/Rectangle1.png";
-import img_2 from "../assets/images/Rectangle2.png";
-import img_3 from "../assets/images/Rectangle3.png";
+import img_1 from "../../public/images/Rectangle1.png";
+import img_2 from "../../public/images/Rectangle2.png";
+import img_3 from "../../public/images/Rectangle3.png";
 
 const LatestNewsData = [
   {

@@ -1,5 +1,5 @@
 import "./Banner.scss";
-import pic from "../../assets/images/pic.png";
+import pic from "../../../public/images/pic.png";
 function Banner() {
   return (
     <div className="banner align-items-center justify-content-between ">

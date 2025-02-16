@@ -1,7 +1,7 @@
 import "./Features.scss";
-// import shipping from "../../assets/images/shipping.png";
-import refund from "../../assets/images/refund.png";
-import support from "../../assets/images/support.png";
+// import shipping from "../../../public/images/shipping.png";
+import refund from "../../../public/images/refund.png";
+import support from "../../../public/images/support.png";
 function Features() {
   return (
     <div className="features container d-flex justify-content-between text-center">

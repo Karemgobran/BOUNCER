@@ -1,5 +1,5 @@
 import "./PopupDialog.scss";
-import image from "../../assets/images/img.png";
+import image from "../../../public/images/img.png";
 
 function PopupDialog({ showDialog, closeDialog }) {
   return (
