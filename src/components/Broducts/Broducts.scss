@@ -6,6 +6,8 @@ $dark-gray: #6c757d;
     border-radius: 8px;
 
 
+
+
     .select {
         @media (max-width:767px) {
             & {
@@ -51,11 +53,49 @@ $dark-gray: #6c757d;
     }
 }
 
+.list {
+    flex-direction: column;
+
+    .product-card {
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+
+        @media (max-width:767px) {
+            & {
+                flex-direction: column;
+            }
+
+            .list-view-card {
+                text-align: center;
+            }
+
+            .price {
+                justify-content: center;
+            }
+
+            .buttons {
+                justify-content: center;
+            }
+        }
+
+        .image {
+            width: 220px;
+        }
+    }
+}
+
+.grid {
+    flex-direction: row;
+}
+
 .products-container {
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
     padding-bottom: 10px;
+
+
 
 
 

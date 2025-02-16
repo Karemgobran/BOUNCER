@@ -3,10 +3,11 @@ import "./Broducts.scss";
 import products from "../../data/products";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 function Broducts() {
   const scrollRef = useRef(null);
+  const [viewMode, setviewMode] = useState("grid");
   const scroll = (direction) => {
     if (scrollRef.current) {
       const { scrollLeft, clientWidth } = scrollRef.current;
@@ -49,10 +50,20 @@ function Broducts() {
             </div>
           </div>
           <div className="view-icons d-flex flex-nowrap">
-            <button className="btn btn-light grid-view active">
+            <button
+              className={`btn btn-light grid-view ${
+                viewMode === "grid" ? "active" : ""
+              }`}
+              onClick={() => setviewMode("grid")}
+            >
               <i className="bx bxs-grid"></i>
             </button>
-            <button className="btn btn-light list-view">
+            <button
+              className={`btn btn-light list-view ${
+                viewMode === "list" ? "active" : ""
+              }`}
+              onClick={() => setviewMode("list")}
+            >
               <i className="bx bx-list-ul"></i>
             </button>
             <button className="sid btn btn-light list-view">
@@ -62,7 +73,10 @@ function Broducts() {
         </div>
       </div>
       <div className="position-relative">
-        <div className="products-container d-flex " ref={scrollRef}>
+        <div
+          className={`products-container d-flex  ${viewMode}`}
+          ref={scrollRef}
+        >
           {products.map((product) => (
             <div
               key={product.id}
@@ -74,28 +88,67 @@ function Broducts() {
                   className="card-img-top w-100"
                   alt={product.name}
                 />
-                <div className="Card-hover d-flex justify-content-center w-100 h-100 gap-2 position-absolute align-items-center">
-                  <i className="bx bx-heart"></i>
-                  <i className="bx bx-cart-alt"></i>
-                </div>
+                {viewMode === "grid" && (
+                  <div className="Card-hover d-flex justify-content-center w-100 h-100 gap-2 position-absolute align-items-center">
+                    <i className="bx bx-heart"></i>
+                    <i className="bx bx-cart-alt"></i>
+                  </div>
+                )}
               </div>
-              <div className="card-body text-center">
-                <h5 className="card-title">{product.name}</h5>
-                <div className="price d-flex">
-                  <span className="new-price">${product.price}</span>
-                  <span className="old-price">${product.oldPrice}</span>
+              {viewMode === "grid" && (
+                <div className="card-body text-center">
+                  <h5 className="card-title">{product.name}</h5>
+                  <div className="price d-flex">
+                    <span className="new-price">${product.price}</span>
+                    <span className="old-price">${product.oldPrice}</span>
+                  </div>
                 </div>
-              </div>
+              )}
+
+              {viewMode === "list" && (
+                <div className="list-view-card d-flex p-3  rounded">
+                  <div className="product-info flex-grow-1">
+                    <div className="price d-flex align-items-center">
+                      <span className="new-price text-danger fw-bold fs-4">
+                        {product.price}
+                      </span>
+                      <span className="old-price text-decoration-line-through text-secondary ms-2">
+                        {product.oldPrice}
+                      </span>
+                    </div>
+                    <p className="description text-muted mt-2">
+                      Nunc facilisis sagittis ullamcorper. Proin lectus ipsum,
+                      gravida et mattis vulputate, tristique ut lectus. Sed et
+                      lectus lorem nunc leifend laoreet.
+                    </p>
+                    <div className="buttons mt-3 d-flex">
+                      <button className="btn btn-outline-primary d-flex align-items-center">
+                        <i className="bx bx-cart-alt me-2"></i> Add To Cart
+                      </button>
+                      <button className="btn btn-outline-secondary ms-2 d-flex align-items-center">
+                        <i className="bx bx-heart"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           ))}
         </div>
-
-        <button className="scroll-btn left " onClick={() => scroll("left")}>
-          <FontAwesomeIcon icon={faArrowLeft} />
-        </button>
-        <button className="scroll-btn right" onClick={() => scroll("right")}>
-          <FontAwesomeIcon icon={faArrowRight} />
-        </button>
+        {viewMode === "grid" && (
+          <>
+            {" "}
+            <button className="scroll-btn left " onClick={() => scroll("left")}>
+              <FontAwesomeIcon icon={faArrowLeft} />
+            </button>
+            <button
+              className="scroll-btn right"
+              onClick={() => scroll("right")}
+            >
+              <FontAwesomeIcon icon={faArrowRight} />
+            </button>
+          </>
+        )}
       </div>
       <div className="container mt-5">
         <nav>
