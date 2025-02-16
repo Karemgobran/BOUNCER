@@ -1,4 +1,4 @@
-import mack from "../../public/images/mack.png";
+import mack from "../assets/images/mack.png";
 
 const products = [
   {

@@ -1,6 +1,6 @@
 import "./Footer.scss";
-import logo from "../../../public/images/logoo.png";
-import brands from "../../../public/images/Brands.png";
+import logo from "../../assets/images/logoo.png";
+import brands from "../../assets/images/Brands.png";
 
 function Footer() {
   return (
