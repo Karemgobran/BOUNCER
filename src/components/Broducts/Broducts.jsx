@@ -4,10 +4,12 @@ import products from "../../data/products";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { useRef, useState } from "react";
+import FilterSidebar from "../FilterSidebar/FilterSidebar";
 
 function Broducts() {
   const scrollRef = useRef(null);
   const [viewMode, setviewMode] = useState("grid");
+  const [isOpen, setIsOpen] = useState(false);
   const scroll = (direction) => {
     if (scrollRef.current) {
       const { scrollLeft, clientWidth } = scrollRef.current;
@@ -24,13 +26,13 @@ function Broducts() {
 
   return (
     <div>
-      <div>
+      <div className="banner-relative">
         <Banner />
       </div>
       <div className="container py-3 pt-3 pb-3">
         <div className="d-flex align-items-center justify-content-between">
           <div className="">
-            <div className="select d-flex align-items-center">
+            <div className="select d-flex ">
               <div className="sortBy">
                 <label htmlFor="sort">Sort By</label>
               </div>
@@ -66,9 +68,20 @@ function Broducts() {
             >
               <i className="bx bx-list-ul"></i>
             </button>
-            <button className="sid btn btn-light list-view">
+            <button
+              className="sid btn btn-light list-view"
+              onClick={() => setIsOpen(!isOpen)}
+            >
               <i className="bx bx-tone"></i>
             </button>
+          </div>
+          <div className={`sidebar ${isOpen ? "open" : ""}`}>
+            <div className="position-relative">
+              <FilterSidebar />
+              <button className="exit" onClick={() => setIsOpen(!isOpen)}>
+                <i className="bx bx-x"></i>
+              </button>
+            </div>
           </div>
         </div>
       </div>

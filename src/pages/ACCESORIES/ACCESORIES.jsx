@@ -7,10 +7,10 @@ function ACCESORIES() {
     <>
       <div className="container mt-5">
         <div className="row ">
-          <div className="col-lg-3 col-md-4 col-12">
+          <div className="FilterSidebar col-lg-3 col-md-4 col-12">
             <FilterSidebar />
           </div>
-          <div className="col-lg-9 col-md-8 col-12">
+          <div className="Broducts col-lg-9 col-md-8 col-12">
             <Broducts />
           </div>
         </div>

@@ -5,13 +5,23 @@ $dark-gray: #6c757d;
 .container {
     border-radius: 8px;
 
-
+    @media (max-width:767px) {
+        .banner-relative {
+            position: relative;
+            top: -23px;
+            width: 115%;
+            left: -42px;
+        }
+    }
 
 
     .select {
+        align-items: center;
+
         @media (max-width:767px) {
             & {
                 flex-direction: column;
+                align-items: start;
             }
 
         }
@@ -263,5 +273,28 @@ $light-gray: #f8f9fa;
         & {
             display: block;
         }
+    }
+}
+
+.sidebar {
+    background-color: white;
+    padding: 10px;
+    position: absolute;
+    top: 0;
+    left: -70%;
+    width: 70%;
+    height: 100%;
+    z-index: 200;
+    transition: 0.3s ease-in-out;
+
+    &.open {
+        left: 0;
+    }
+
+    .exit {
+        position: absolute;
+        top: 13px;
+        right: 18px;
+
     }
 }
