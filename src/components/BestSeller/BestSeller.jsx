@@ -81,6 +81,10 @@ function BestSeller() {
                 <span className="new-price">${product.price}</span>
                 <span className="old-price">${product.oldPrice}</span>
               </div>
+              <div className="rating">
+                {"★".repeat(product.rating)}
+                {"☆".repeat(5 - product.rating)}
+              </div>
             </div>
           </div>
         ))}
