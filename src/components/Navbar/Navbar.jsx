@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import logo from "../../assets/images/logoo.png";
 import "./Navbar.scss";
 
@@ -10,24 +11,24 @@ function Navbar() {
       <div className="links">
         <ul className="d-flex justify-content-center">
           <li>
-            <a className="active" href="#">
+            <Link className="active" to="/">
               home
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="#">Store</a>
+            <Link to="/Store">Store</Link>
           </li>
           <li>
-            <a href="#">Iphone</a>
+            <Link to="/Iphone">Iphone</Link>
           </li>
           <li>
-            <a href="#">IPAD</a>
+            <Link to="/IPAD">IPAD</Link>
           </li>
           <li>
-            <a href="#">MACBOOK</a>
+            <Link to="/MACBOOK">MACBOOK</Link>
           </li>
           <li>
-            <a href="#">ACCESORIES</a>
+            <Link to="/ACCESORIES ">ACCESORIES</Link>
           </li>
         </ul>
       </div>
