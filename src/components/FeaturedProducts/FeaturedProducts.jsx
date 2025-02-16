@@ -10,7 +10,7 @@ const FeaturedProducts = () => {
       <div className="row  justify-content-center">
         {products.map((product) => (
           <div key={product.id} className="col-12 col-md-6 col-lg-4">
-            <div className="product-card d-flex align-items-center">
+            <div className="product-card d-flex align-items-center w-100">
               <img
                 src={product.img}
                 alt={product.name}
