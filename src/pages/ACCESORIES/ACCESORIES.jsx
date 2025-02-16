@@ -2,6 +2,7 @@ import React from "react";
 import FilterSidebar from "../../components/FilterSidebar/FilterSidebar";
 import Broducts from "../../components/Broducts/Broducts";
 import "./ACCESORIES.scss";
+import Footer from "../../components/Footer/Footer";
 function ACCESORIES() {
   return (
     <>
@@ -15,6 +16,7 @@ function ACCESORIES() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }
