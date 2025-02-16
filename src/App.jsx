@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import ACCESORIES from "./pages/ACCESORIES/ACCESORIES";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/ACCESORIES" element={<ACCESORIES />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </>
   );
