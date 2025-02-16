@@ -1,0 +1,87 @@
+.product-page {
+    .price {
+        .current-price {
+            color: red;
+            font-weight: bold;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: gray;
+        }
+    }
+
+    .color-btn {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        cursor: pointer;
+        border: none;
+    }
+
+    .btn-facebook {
+        background-color: #3b5998;
+        color: white;
+    }
+
+    .btn-twitter {
+        background-color: #1da1f2;
+        color: white;
+    }
+
+    .best-seller,
+    .side-product {
+        padding: 15px;
+        border: 1px solid #ddd;
+        text-align: center;
+
+        img {
+            max-width: 100%;
+        }
+    }
+
+    .left {
+        width: 75%;
+    }
+
+    .image-hover img {
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .image-hover img:hover {
+        transform: scale(1.1);
+    }
+}
+
+.card {
+    transition: 0.3s ease-in-out;
+
+    &:hover {
+        transform: scale(1.05)
+    }
+}
+
+.current {
+    transition: 0.3s ease-in-out;
+
+    &:hover {
+        transform: scale(1.05)
+    }
+
+}
+
+.child {
+    padding: 10px 0;
+    border-bottom: 1px solid rgb(195, 192, 192);
+    border-top: 1px solid rgb(195, 192, 192);
+}
+
+.parentt {
+    @media (max-width:767px) {
+        & {
+            flex-direction: column;
+
+            align-items: center;
+        }
+    }
+}
