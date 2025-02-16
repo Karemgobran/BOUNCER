@@ -62,7 +62,9 @@ function Carousel() {
                   </p>
                   <a href="#">MORE</a>
                 </div>
-                <img src={mop} className="d-block mr-3" alt="..." />
+                <div className="image">
+                  <img src={mop} className="d-block mr-3" alt="..." />
+                </div>
               </div>
             </div>
             <div className="carousel-item">
@@ -76,7 +78,9 @@ function Carousel() {
                   </p>
                   <a href="#">MORE</a>
                 </div>
-                <img src={mop} className="d-block mr-3" alt="..." />
+                <div className="image">
+                  <img src={mop} className="d-block mr-3" alt="..." />
+                </div>
               </div>
             </div>
           </div>
