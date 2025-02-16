@@ -1,6 +1,7 @@
 .banner {
     background-color: rgb(51, 160, 255);
-    margin-top: 80px;
+    // margin-top: 80px;
+    // padding: 10px;
 
 
     .image {
@@ -9,6 +10,7 @@
     }
 
     .info {
+        padding: 20px;
 
         .product-name {
             font-size: 50px;
