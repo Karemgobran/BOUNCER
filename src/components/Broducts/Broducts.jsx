@@ -115,6 +115,10 @@ function Broducts() {
                     <span className="new-price">${product.price}</span>
                     <span className="old-price">${product.oldPrice}</span>
                   </div>
+                  <div className="rating">
+                    {"★".repeat(product.rating)}
+                    {"☆".repeat(5 - product.rating)}
+                  </div>
                 </div>
               )}
 
@@ -134,6 +138,10 @@ function Broducts() {
                       gravida et mattis vulputate, tristique ut lectus. Sed et
                       lectus lorem nunc leifend laoreet.
                     </p>
+                    <div className="rating">
+                      {"★".repeat(product.rating)}
+                      {"☆".repeat(5 - product.rating)}
+                    </div>
                     <div className="buttons mt-3 d-flex">
                       <button className="btn btn-outline-primary d-flex align-items-center">
                         <i className="bx bx-cart-alt me-2"></i> Add To Cart
