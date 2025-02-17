@@ -1,14 +1,28 @@
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./BestSeller.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import products from "../../data/products";
+import axios from "axios";
 
 function BestSeller() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [visibleProducts, setVisibleProducts] = useState(8);
+  const [products, setproducts] = useState([]);
   const scrollRef = useRef(null);
+
+  useEffect(() => {
+    axios
+      .get("https://fakestoreapi.com/products")
+      .then((response) => {
+        setproducts(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching:", error);
+      });
+  }, []);
+
+  const categories = [...new Set(products.map((product) => product.category))];
 
   const filteredProducts =
     selectedCategory === "All"
@@ -43,32 +57,30 @@ function BestSeller() {
     <div className="best-seller container py-4 position-relative">
       <h2 className="text-center">BEST SELLER</h2>
       <nav className="categories text-center mb-4">
-        {["All", "Mac", "iPhone", "iPad", "iPod", "Accessories"].map(
-          (category) => (
-            <button
-              key={category}
-              className={`btn mx-2 ${
-                selectedCategory === category ? "active" : ""
-              }`}
-              onClick={() => setSelectedCategory(category)}
-            >
-              {category}
-            </button>
-          )
-        )}
+        {categories.map((category) => (
+          <button
+            key={category}
+            className={`btn mx-2 ${
+              selectedCategory === category ? "active" : ""
+            }`}
+            onClick={() => setSelectedCategory(category)}
+          >
+            {category}
+          </button>
+        ))}
       </nav>
 
-      <div className="products-container d-flex " ref={scrollRef}>
+      <div className="products-container d-flex" ref={scrollRef}>
         {displayedProducts.map((product) => (
           <div
             key={product.id}
-            className="product-card card shadow-sm border-0 p-3 overflow-hidden "
+            className="product-card card shadow-sm border-0 p-3 overflow-hidden"
           >
             <div className="image overflow-hidden position-relative">
               <img
-                src={product.img}
+                src={product.image}
                 className="card-img-top w-100"
-                alt={product.name}
+                alt={product.title}
               />
               <div className="Card-hover d-flex justify-content-center w-100 h-100 gap-2 position-absolute align-items-center">
                 <i className="bx bx-heart"></i>
@@ -76,21 +88,23 @@ function BestSeller() {
               </div>
             </div>
             <div className="card-body text-center">
-              <h5 className="card-title">{product.name}</h5>
+              <h5 className="card-title">{product.title}</h5>
               <div className="price d-flex">
                 <span className="new-price">${product.price}</span>
-                <span className="old-price">${product.oldPrice}</span>
+                {product.oldPrice && (
+                  <span className="old-price">${product.oldPrice}</span>
+                )}
               </div>
               <div className="rating">
-                {"★".repeat(product.rating)}
-                {"☆".repeat(5 - product.rating)}
+                {"★".repeat(product.rating.rate)}
+                {"☆".repeat(5 - product.rating.rate)}
               </div>
             </div>
           </div>
         ))}
       </div>
 
-      <button className="scroll-btn left " onClick={() => scroll("left")}>
+      <button className="scroll-btn left" onClick={() => scroll("left")}>
         <FontAwesomeIcon icon={faArrowLeft} />
       </button>
       <button className="scroll-btn right" onClick={() => scroll("right")}>
