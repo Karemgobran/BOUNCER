@@ -10,12 +10,18 @@
 
     .product-card {
         gap: 20px;
+        height: 200px;
+        margin: 0;
 
+        .image {
+            width: 200px;
+            padding: 15px;
 
-
-        .product-img {
-            max-width: fit-content;
+            .product-img {
+                max-width: 100%;
+            }
         }
+
 
         .product-info {
             flex-grow: 1;
