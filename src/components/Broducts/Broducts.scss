@@ -7,10 +7,10 @@ $dark-gray: #6c757d;
 
     @media (max-width:767px) {
         .banner-relative {
-            position: relative;
-            top: -23px;
-            width: 116%;
-            left: -42px;
+            // position: relative;
+            // top: -23px;
+            // width: 100%;
+            // left: -42px;
         }
     }
 
@@ -70,6 +70,7 @@ $dark-gray: #6c757d;
         width: 100%;
         flex-direction: row;
         align-items: center;
+        // height: 300px;
 
         @media (max-width:767px) {
             & {
@@ -96,7 +97,24 @@ $dark-gray: #6c757d;
 }
 
 .grid {
-    flex-direction: row;
+    .product-card {
+        height: 300px;
+
+        .image {
+            img {
+                height: 100%;
+            }
+        }
+    }
+
+    .card-body {
+        padding: 0;
+
+        .card-title {
+            font-size: 15px;
+            font-weight: 600;
+        }
+    }
 }
 
 .products-container {

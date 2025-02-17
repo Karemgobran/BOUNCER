@@ -1,15 +1,17 @@
 import Banner from "../../components/Banner/Banner";
 import "./Broducts.scss";
-import products from "../../data/products";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import FilterSidebar from "../FilterSidebar/FilterSidebar";
+import axios from "axios";
 
 function Broducts() {
   const scrollRef = useRef(null);
   const [viewMode, setviewMode] = useState("grid");
   const [isOpen, setIsOpen] = useState(false);
+  const [products, setProducts] = useState([]);
+
   const scroll = (direction) => {
     if (scrollRef.current) {
       const { scrollLeft, clientWidth } = scrollRef.current;
@@ -23,6 +25,20 @@ function Broducts() {
       });
     }
   };
+
+  function getProducts() {
+    axios
+      .get("https://fakestoreapi.com/products")
+      .then((res) => {
+        setProducts(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+  useEffect(() => {
+    getProducts();
+  }, []);
 
   return (
     <div>
@@ -97,9 +113,9 @@ function Broducts() {
             >
               <div className="image overflow-hidden position-relative">
                 <img
-                  src={product.img}
+                  src={product.image}
                   className="card-img-top w-100"
-                  alt={product.name}
+                  alt={product.title}
                 />
                 {viewMode === "grid" && (
                   <div className="Card-hover d-flex justify-content-center w-100 h-100 gap-2 position-absolute align-items-center">
@@ -110,14 +126,14 @@ function Broducts() {
               </div>
               {viewMode === "grid" && (
                 <div className="card-body text-center">
-                  <h5 className="card-title">{product.name}</h5>
+                  <h5 className="card-title">{product.title}</h5>
                   <div className="price d-flex">
                     <span className="new-price">${product.price}</span>
                     <span className="old-price">${product.oldPrice}</span>
                   </div>
                   <div className="rating">
-                    {"★".repeat(product.rating)}
-                    {"☆".repeat(5 - product.rating)}
+                    {"★".repeat(product.rating.rate)}
+                    {"☆".repeat(5 - product.rating.rate)}
                   </div>
                 </div>
               )}
@@ -139,8 +155,8 @@ function Broducts() {
                       lectus lorem nunc leifend laoreet.
                     </p>
                     <div className="rating">
-                      {"★".repeat(product.rating)}
-                      {"☆".repeat(5 - product.rating)}
+                      {"★".repeat(product.rating.rate)}
+                      {"☆".repeat(5 - product.rating.rate)}
                     </div>
                     <div className="buttons mt-3 d-flex">
                       <button className="btn btn-outline-primary d-flex align-items-center">
@@ -158,7 +174,6 @@ function Broducts() {
         </div>
         {viewMode === "grid" && (
           <>
-            {" "}
             <button className="scroll-btn left " onClick={() => scroll("left")}>
               <FontAwesomeIcon icon={faArrowLeft} />
             </button>
