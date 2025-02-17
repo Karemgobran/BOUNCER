@@ -41,4 +41,19 @@
     .arrow {
         width: 40px;
     }
+
+    .image {
+
+        @media (min-width: 595px) and (max-width: 795px) {
+            & {
+                width: 190%;
+            }
+        }
+
+        @media (min-width: 767px) and (max-width: 993px) {
+            & {
+                width: 50%;
+            }
+        }
+    }
 }
