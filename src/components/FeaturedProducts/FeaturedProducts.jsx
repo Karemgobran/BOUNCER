@@ -1,7 +1,6 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./FeaturedProducts.scss";
-import products from "../../data/FeaturedProducts";
 import axios from "axios";
 import { useState } from "react";
 const FeaturedProducts = () => {
