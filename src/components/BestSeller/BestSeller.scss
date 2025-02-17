@@ -66,10 +66,17 @@
         background: #fff;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         margin-right: 35px;
+        height: 300px;
 
         @media (max-width: 768px) {
             & {
                 margin-right: 0;
+            }
+        }
+
+        .image {
+            img {
+                height: 100%;
             }
         }
 
@@ -107,10 +114,11 @@
         }
 
         .card-body {
+            padding: 0;
 
             .card-title {
-                font-size: 18px;
-                font-weight: bold;
+                font-size: 15px;
+                font-weight: 600;
                 color: #333;
             }
 

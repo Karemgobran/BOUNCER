@@ -7,22 +7,37 @@ import axios from "axios";
 
 function BestSeller() {
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const [categories, setCategories] = useState(["All"]); // ✅ تصحيح الحالة
   const [visibleProducts, setVisibleProducts] = useState(8);
-  const [products, setproducts] = useState([]);
+  const [products, setProducts] = useState([]);
   const scrollRef = useRef(null);
 
-  useEffect(() => {
+  function getProducts() {
     axios
       .get("https://fakestoreapi.com/products")
       .then((response) => {
-        setproducts(response.data);
+        setProducts(response.data);
       })
       .catch((error) => {
-        console.error("Error fetching:", error);
+        console.error("Error fetching products:", error);
       });
-  }, []);
+  }
 
-  const categories = [...new Set(products.map((product) => product.category))];
+  function getCategories() {
+    axios
+      .get("https://fakestoreapi.com/products/categories")
+      .then((response) => {
+        setCategories(["All", ...response.data]);
+      })
+      .catch((error) => {
+        console.error("Error fetching categories:", error);
+      });
+  }
+
+  useEffect(() => {
+    getProducts();
+    getCategories();
+  }, []);
 
   const filteredProducts =
     selectedCategory === "All"
@@ -46,11 +61,9 @@ function BestSeller() {
   };
 
   const toggleLoadMore = () => {
-    if (visibleProducts >= filteredProducts.length) {
-      setVisibleProducts(8);
-    } else {
-      setVisibleProducts((prev) => prev + 4);
-    }
+    setVisibleProducts((prev) =>
+      prev >= filteredProducts.length ? 8 : prev + 4
+    );
   };
 
   return (
@@ -88,7 +101,7 @@ function BestSeller() {
               </div>
             </div>
             <div className="card-body text-center">
-              <h5 className="card-title">{product.title}</h5>
+              <p className="card-title">{product.title}</p>
               <div className="price d-flex">
                 <span className="new-price">${product.price}</span>
                 {product.oldPrice && (
@@ -96,8 +109,8 @@ function BestSeller() {
                 )}
               </div>
               <div className="rating">
-                {"★".repeat(product.rating.rate)}
-                {"☆".repeat(5 - product.rating.rate)}
+                {"★".repeat(Math.floor(product.rating.rate))}
+                {"☆".repeat(5 - Math.floor(product.rating.rate))}
               </div>
             </div>
           </div>
