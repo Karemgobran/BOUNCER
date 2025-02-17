@@ -254,7 +254,7 @@ $light-gray: #f8f9fa;
             transition: 0.3s;
 
             &:hover {
-                background: darken($light-gray, 10%);
+                // background: darken($light-gray, 10%);
             }
         }
 

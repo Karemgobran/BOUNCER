@@ -37,7 +37,7 @@ function Broducts() {
                 <label htmlFor="sort">Sort By</label>
               </div>
               <select id="sort" className="form-select form-select-sm ">
-                <option selected>Name</option>
+                <option>Name</option>
                 <option>Price</option>
                 <option>Date</option>
               </select>
@@ -45,7 +45,7 @@ function Broducts() {
                 Show
               </label>
               <select id="show" className="form-select form-select-sm">
-                <option selected>12</option>
+                <option>12</option>
                 <option>24</option>
                 <option>36</option>
               </select>
