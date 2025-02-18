@@ -6,8 +6,8 @@ import Home from "./pages/HOME/Home";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
-import ACCESORIES from "./pages/ACCESORIES/ACCESORIES";
-import ProductCard from "./components/ProductCard/ProductCard";
+import WomenClothing from "./pages/WomenClothing/WomenClothing";
+import Store from "./pages/store/store";
 
 function App() {
   return (
@@ -17,8 +17,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/women's-clothing" element={<ACCESORIES />} />
-          <Route path="/Store" element={<ProductCard />} />
+          <Route path="/women's-clothing" element={<WomenClothing />} />
+          <Route path="/Store" element={<Store />} />
         </Routes>
       </BrowserRouter>
     </>
