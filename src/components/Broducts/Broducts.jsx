@@ -1,4 +1,4 @@
-import Banner from "../../components/Banner/Banner";
+import Banner from "../Banner/Banner";
 import "./Broducts.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
@@ -28,7 +28,7 @@ function Broducts() {
 
   function getProducts() {
     axios
-      .get("https://fakestoreapi.com/products")
+      .get("https://fakestoreapi.com/products/category/women's clothing")
       .then((res) => {
         setProducts(res.data);
       })
