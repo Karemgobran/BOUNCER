@@ -1,12 +1,12 @@
 import Banner from "../Banner/Banner";
-import "./ElectronicsProducts.scss";
+import "./Products.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { useRef, useState, useEffect } from "react";
 import FilterSidebar from "../FilterSidebar/FilterSidebar";
 import axios from "axios";
 
-function ElectronicsProducts() {
+function Products({ category }) {
   const scrollRef = useRef(null);
   const [viewMode, setviewMode] = useState("grid");
   const [isOpen, setIsOpen] = useState(false);
@@ -26,19 +26,23 @@ function ElectronicsProducts() {
     }
   };
 
-  function getProducts() {
-    axios
-      .get("https://fakestoreapi.com/products/category/electronics")
-      .then((res) => {
-        setProducts(res.data);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }
   useEffect(() => {
-    getProducts();
-  }, []);
+    if (category) {
+      axios
+        .get(`https://fakestoreapi.com/products/category/${category}`)
+        .then((res) => {
+          setProducts(res.data);
+        })
+        .catch((err) => console.error(err));
+    } else {
+      axios
+        .get("https://fakestoreapi.com/products")
+        .then((res) => {
+          setProducts(res.data);
+        })
+        .catch((err) => console.error(err));
+    }
+  }, [category]);
 
   return (
     <div>
@@ -221,4 +225,4 @@ function ElectronicsProducts() {
   );
 }
 
-export default ElectronicsProducts;
+export default Products;

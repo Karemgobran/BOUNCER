@@ -20,11 +20,11 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/women's-clothing" element={<WomenClothing />} />
+          <Route path="/:category" element={<WomenClothing />} />
           <Route path="/Store" element={<Store />} />
-          <Route path="/electronics" element={<Electronics />} />
-          <Route path="/jewelery" element={<Jewelery />} />
-          <Route path="/men's-clothing" element={<MensClothing />} />
+          <Route path="/:category" element={<Electronics />} />
+          <Route path="/:category" element={<Jewelery />} />
+          <Route path="/:category" element={<MensClothing />} />
         </Routes>
       </BrowserRouter>
     </>
