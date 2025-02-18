@@ -1,12 +1,12 @@
 import Banner from "../Banner/Banner";
-import "./Broducts.scss";
+import "./WomenBroducts.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { useRef, useState, useEffect } from "react";
 import FilterSidebar from "../FilterSidebar/FilterSidebar";
 import axios from "axios";
 
-function Broducts() {
+function WomenBroducts() {
   const scrollRef = useRef(null);
   const [viewMode, setviewMode] = useState("grid");
   const [isOpen, setIsOpen] = useState(false);
@@ -221,4 +221,4 @@ function Broducts() {
   );
 }
 
-export default Broducts;
+export default WomenBroducts;

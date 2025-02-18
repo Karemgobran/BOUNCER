@@ -1,6 +1,6 @@
 import React from "react";
 import FilterSidebar from "../../components/FilterSidebar/FilterSidebar";
-import Broducts from "../../components/Broducts/Broducts";
+import WomenBroducts from "../../components/WomenBroducts/WomenBroducts";
 import "./ACCESORIES.scss";
 import Footer from "../../components/Footer/Footer";
 function ACCESORIES() {
@@ -12,7 +12,7 @@ function ACCESORIES() {
             <FilterSidebar />
           </div>
           <div className="Broducts col-lg-9 col-md-8 col-12">
-            <Broducts />
+            <WomenBroducts />
           </div>
         </div>
       </div>
