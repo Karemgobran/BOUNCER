@@ -8,6 +8,9 @@ import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import WomenClothing from "./pages/WomenClothing/WomenClothing";
 import Store from "./pages/store/store";
+import Electronics from "./pages/electronics/electronics";
+import Jewelery from "./pages/Jewelery/Jewelery";
+import MensClothing from "./pages/MensClothing/MensClothing";
 
 function App() {
   return (
@@ -19,6 +22,9 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/women's-clothing" element={<WomenClothing />} />
           <Route path="/Store" element={<Store />} />
+          <Route path="/electronics" element={<Electronics />} />
+          <Route path="/jewelery" element={<Jewelery />} />
+          <Route path="/men's-clothing" element={<MensClothing />} />
         </Routes>
       </BrowserRouter>
     </>
