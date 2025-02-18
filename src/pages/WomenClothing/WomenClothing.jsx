@@ -1,9 +1,9 @@
 import React from "react";
 import FilterSidebar from "../../components/FilterSidebar/FilterSidebar";
 import WomenBroducts from "../../components/WomenBroducts/WomenBroducts";
-import "./ACCESORIES.scss";
+import "./WomenClothing.scss";
 import Footer from "../../components/Footer/Footer";
-function ACCESORIES() {
+function WomenClothing() {
   return (
     <>
       <div className="container mt-5">
@@ -21,4 +21,4 @@ function ACCESORIES() {
   );
 }
 
-export default ACCESORIES;
+export default WomenClothing;
