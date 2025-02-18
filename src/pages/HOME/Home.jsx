@@ -29,8 +29,6 @@ function Home() {
   return (
     <>
       <PopupDialog showDialog={showDialog} closeDialog={closeDialog} />
-      {/* <Header />
-      <Navbar /> */}
       <Carousel />
       <BestSeller />
       <Banner />
