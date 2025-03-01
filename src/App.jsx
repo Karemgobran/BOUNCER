@@ -8,9 +8,10 @@ import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import WomenClothing from "./pages/WomenClothing/WomenClothing";
 import Store from "./pages/store/store";
-import Electronics from "./pages/electronics/electronics";
+import Electronics from "./pages/Electronics/Electronics";
 import Jewelery from "./pages/Jewelery/Jewelery";
 import MensClothing from "./pages/MensClothing/MensClothing";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/:category" element={<Jewelery />} />
           <Route path="/:category" element={<MensClothing />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
     </>
   );

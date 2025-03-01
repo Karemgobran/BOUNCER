@@ -1,8 +1,18 @@
+import { useState } from "react";
 import "./Footer.scss";
 import logo from "../../assets/images/logoo.png";
 import brands from "../../assets/images/Brands.png";
 
 function Footer() {
+  const [openSections, setOpenSections] = useState({});
+
+  const toggleSection = (index) => {
+    setOpenSections((prev) => ({
+      ...prev,
+      [index]: !prev[index],
+    }));
+  };
+
   return (
     <footer className="footer">
       <div className="container py-5">
@@ -11,16 +21,11 @@ function Footer() {
             <img src={logo} alt="Logo" className="mb-4 img-fluid logo" />
             <p className="text-muted">
               Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry`s standard dummy text
-              ever since the 1500s, when an unknown printer.
+              industry.
             </p>
           </div>
           <div className="col-md-4">
             <h5>Follow Us</h5>
-            <p className="text-muted">
-              Since the 1500s, when an unknown printer took a galley of type and
-              scrambled.
-            </p>
             <div className="social-icons d-flex gap-3">
               <a href="#" className="text-decoration-none">
                 <i className="bx bxl-facebook-circle fs-4 text-primary"></i>
@@ -38,7 +43,7 @@ function Footer() {
           </div>
         </div>
         <hr />
-        <div className="row">
+        <div className="row footer-links">
           {[
             "Information",
             "Service",
@@ -47,9 +52,16 @@ function Footer() {
             "Useful Links",
             "Our Offers",
           ].map((section, index) => (
-            <div key={index} className="col-md-4 col-lg-2">
-              <h6>{section}</h6>
-              <ul className="list-unstyled p-0 ">
+            <div key={index} className="col-md-4 col-lg-2 cols">
+              <h6 className="footer-title" onClick={() => toggleSection(index)}>
+                {section}
+                <span className="dropdown-icon">▼</span>
+              </h6>
+              <ul
+                className={`list-unstyled p-0 ${
+                  openSections[index] ? "open" : ""
+                }`}
+              >
                 <li>
                   <a href="#" className="text-muted text-decoration-none">
                     About Us

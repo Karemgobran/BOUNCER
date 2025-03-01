@@ -26,7 +26,6 @@ function WomenClothing() {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 }

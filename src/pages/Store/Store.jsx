@@ -25,7 +25,6 @@ function Store() {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 }

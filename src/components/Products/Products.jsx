@@ -11,6 +11,8 @@ function Products({ category }) {
   const [viewMode, setviewMode] = useState("grid");
   const [isOpen, setIsOpen] = useState(false);
   const [products, setProducts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const productsPerPage = 12;
 
   const scroll = (direction) => {
     if (scrollRef.current) {
@@ -44,6 +46,19 @@ function Products({ category }) {
     }
   }, [category]);
 
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo({ top: 750, behavior: "smooth" });
+  };
+
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = products.slice(
+    indexOfFirstProduct,
+    indexOfLastProduct
+  );
+  const totalPages = Math.ceil(products.length / productsPerPage);
+
   return (
     <div>
       <div className="banner-relative">
@@ -51,25 +66,23 @@ function Products({ category }) {
       </div>
       <div className="container py-3 pt-3 pb-3">
         <div className="d-flex align-items-center justify-content-between">
-          <div className="">
-            <div className="select d-flex ">
-              <div className="sortBy">
-                <label htmlFor="sort">Sort By</label>
-              </div>
-              <select id="sort" className="form-select form-select-sm ">
-                <option>Name</option>
-                <option>Price</option>
-                <option>Date</option>
-              </select>
-              <label htmlFor="show" className="me-2 ms-2">
-                Show
-              </label>
-              <select id="show" className="form-select form-select-sm">
-                <option>12</option>
-                <option>24</option>
-                <option>36</option>
-              </select>
+          <div className="select d-flex ">
+            <div className="sortBy">
+              <label htmlFor="sort">Sort By</label>
             </div>
+            <select id="sort" className="form-select form-select-sm ">
+              <option>Name</option>
+              <option>Price</option>
+              <option>Date</option>
+            </select>
+            <label htmlFor="show" className="me-2 ms-2">
+              Show
+            </label>
+            <select id="show" className="form-select form-select-sm">
+              <option>12</option>
+              <option>24</option>
+              <option>36</option>
+            </select>
           </div>
           <div className="view-icons d-flex flex-nowrap">
             <button
@@ -107,13 +120,13 @@ function Products({ category }) {
       </div>
       <div className="position-relative">
         <div
-          className={`products-container d-flex  ${viewMode}`}
+          className={`products-container d-flex ${viewMode}`}
           ref={scrollRef}
         >
-          {products.map((product) => (
+          {currentProducts.map((product) => (
             <div
               key={product.id}
-              className="product-card card shadow-sm border-0 p-3 overflow-hidden "
+              className="product-card card shadow-sm border-0 p-3 overflow-hidden"
             >
               <div className="image overflow-hidden position-relative">
                 <img
@@ -178,7 +191,7 @@ function Products({ category }) {
         </div>
         {viewMode === "grid" && (
           <>
-            <button className="scroll-btn left " onClick={() => scroll("left")}>
+            <button className="scroll-btn left" onClick={() => scroll("left")}>
               <FontAwesomeIcon icon={faArrowLeft} />
             </button>
             <button
@@ -193,31 +206,21 @@ function Products({ category }) {
       <div className="container mt-5">
         <nav>
           <ul className="pagination justify-content-center">
-            <li className="page-item">
-              <a className="page-link" href="#">
-                1
-              </a>
-            </li>
-            <li className="page-item">
-              <a className="page-link" href="#">
-                2
-              </a>
-            </li>
-            <li className="page-item active">
-              <a className="page-link" href="#">
-                3
-              </a>
-            </li>
-            <li className="page-item">
-              <a className="page-link" href="#">
-                4
-              </a>
-            </li>
-            <li className="page-item">
-              <a className="page-link" href="#">
-                5
-              </a>
-            </li>
+            {Array.from({ length: totalPages }, (_, index) => (
+              <li
+                key={index}
+                className={`page-item ${
+                  currentPage === index + 1 ? "active" : ""
+                }`}
+              >
+                <button
+                  className="page-link"
+                  onClick={() => handlePageChange(index + 1)}
+                >
+                  {index + 1}
+                </button>
+              </li>
+            ))}
           </ul>
         </nav>
       </div>

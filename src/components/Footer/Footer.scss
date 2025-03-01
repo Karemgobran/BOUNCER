@@ -40,3 +40,50 @@
     }
 
 }
+
+.footer-links {
+    .footer-title {
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .dropdown-icon {
+            display: none;
+        }
+    }
+
+    ul {
+        display: block; // الافتراضي
+    }
+
+    @media (max-width: 768px) {
+        .footer-title {
+            .dropdown-icon {
+                display: inline-block;
+                margin-left: 10px;
+            }
+        }
+
+        ul {
+            display: none; // إخفاء العناصر الافتراضيًا في الموبايل
+            transition: max-height 0.3s ease-out;
+        }
+
+        ul.open {
+            display: block; // إظهار القائمة المفتوحة
+        }
+    }
+}
+
+
+@media (max-width:767px) {
+    .row {
+        gap: 0.5rem
+    }
+
+    .cols {
+        background-color: #eee;
+        border-radius: 15px;
+    }
+}

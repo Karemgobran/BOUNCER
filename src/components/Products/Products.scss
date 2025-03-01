@@ -92,6 +92,12 @@ $dark-gray: #6c757d;
 
         .image {
             width: 220px;
+
+            @media (max-width:767px) {
+                & {
+                    width: 100px;
+                }
+            }
         }
     }
 }
@@ -101,6 +107,9 @@ $dark-gray: #6c757d;
         height: 300px;
 
         .image {
+            width: 51%;
+            margin: auto;
+
             img {
                 height: 100%;
             }
@@ -153,6 +162,7 @@ $dark-gray: #6c757d;
     background: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-right: 35px;
+    gap: 2.5rem;
 
     @media (max-width: 768px) {
         & {
@@ -164,7 +174,7 @@ $dark-gray: #6c757d;
         transform: scale(1.05);
     }
 
-    &:hover .Card-hover {
+    & .image:hover .Card-hover {
         bottom: 0;
     }
 

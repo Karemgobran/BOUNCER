@@ -67,6 +67,7 @@
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         margin-right: 35px;
         height: 300px;
+        gap: 2.5rem;
 
         @media (max-width: 768px) {
             & {
@@ -75,6 +76,9 @@
         }
 
         .image {
+            width: 51%;
+            margin: auto;
+
             img {
                 height: 100%;
             }
@@ -84,7 +88,7 @@
             transform: scale(1.05);
         }
 
-        &:hover .Card-hover {
+        .image:hover .Card-hover {
             bottom: 0;
         }
 

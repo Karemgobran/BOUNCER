@@ -25,7 +25,6 @@ function Jewelery() {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 }
