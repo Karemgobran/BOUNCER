@@ -13,7 +13,8 @@ import Jewelery from "./pages/Jewelery/Jewelery";
 import MensClothing from "./pages/MensClothing/MensClothing";
 import Footer from "./components/Footer/Footer";
 import ProductCard from "./components/ProductCard/ProductCard";
-
+import Cart from "./pages/Cart/Cart";
+import { ToastContainer } from "react-toastify";
 function App() {
   return (
     <>
@@ -28,9 +29,11 @@ function App() {
           <Route path="/:category" element={<Jewelery />} />
           <Route path="/:category" element={<MensClothing />} />
           <Route path="/ProductCard/:productId" element={<ProductCard />} />
+          <Route path="cart" element={<Cart />} />
         </Routes>
         <Footer />
       </BrowserRouter>
+      <ToastContainer />
     </>
   );
 }

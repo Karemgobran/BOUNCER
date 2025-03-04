@@ -18,7 +18,6 @@ function ProductCard() {
       })
       .catch((err) => console.error("Error fetching product:", err));
   }, [productId]);
-  console.log(product);
   if (!product) {
     return <div>Loading...</div>;
   }

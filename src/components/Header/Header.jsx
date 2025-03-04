@@ -4,12 +4,12 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
-
+import { useNavigate } from "react-router-dom";
 function Header() {
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
-
+  const navigate = useNavigate();
   const handleFocus = () => setIsSearchActive(true);
   const handleBlur = () => setIsSearchActive(false);
   const toggleDropdown = () => setIsDropdownOpen((prev) => !prev);
@@ -69,7 +69,9 @@ function Header() {
           </div>
           <div className="cart d-flex gap-2" ref={dropdownRef}>
             <div className="drop" onClick={toggleDropdown}>
-              <a href="#">0 items</a>
+              <a href="#" onClick={() => navigate("/cart")}>
+                0 items
+              </a>
             </div>
             {isDropdownOpen && (
               <div className="dropdown   position-absolute show">
