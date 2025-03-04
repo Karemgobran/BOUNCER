@@ -4,6 +4,7 @@ import "./BestSeller.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function BestSeller() {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -11,7 +12,7 @@ function BestSeller() {
   const [visibleProducts, setVisibleProducts] = useState(8);
   const [products, setProducts] = useState([]);
   const scrollRef = useRef(null);
-
+  const navigate = useNavigate();
   function getProducts() {
     axios
       .get("https://fakestoreapi.com/products")
@@ -33,6 +34,11 @@ function BestSeller() {
         console.error("Error fetching categories:", error);
       });
   }
+  const openProductCard = (productId) => {
+    navigate(`/ProductCard/${productId}`);
+  };
+
+  console.log(products);
 
   useEffect(() => {
     getProducts();
@@ -101,7 +107,12 @@ function BestSeller() {
               </div>
             </div>
             <div className="card-body text-center">
-              <p className="card-title">{product.title}</p>
+              <p
+                className="card-title"
+                onClick={() => openProductCard(product.id)}
+              >
+                {product.title}
+              </p>
               <div className="price d-flex">
                 <span className="new-price">${product.price}</span>
                 {product.oldPrice && (

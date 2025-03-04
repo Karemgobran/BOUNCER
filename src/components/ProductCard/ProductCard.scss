@@ -11,6 +11,11 @@
         }
     }
 
+    .top-image {
+        width: 300px;
+        margin: auto;
+    }
+
     .color-btn {
         width: 20px;
         height: 20px;
@@ -84,4 +89,18 @@
             align-items: center;
         }
     }
+}
+
+.right-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 21px;
+
+    @media (max-width:767px) {
+        .card {
+            width: 250px;
+        }
+    }
+
 }

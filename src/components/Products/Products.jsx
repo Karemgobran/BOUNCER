@@ -5,14 +5,16 @@ import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { useRef, useState, useEffect } from "react";
 import FilterSidebar from "../FilterSidebar/FilterSidebar";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Products({ category }) {
   const scrollRef = useRef(null);
-  const [viewMode, setviewMode] = useState("grid");
+  const [viewMode, setViewMode] = useState("grid");
   const [isOpen, setIsOpen] = useState(false);
   const [products, setProducts] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 12;
+  const navigate = useNavigate();
 
   const scroll = (direction) => {
     if (scrollRef.current) {
@@ -29,21 +31,19 @@ function Products({ category }) {
   };
 
   useEffect(() => {
-    if (category) {
-      axios
-        .get(`https://fakestoreapi.com/products/category/${category}`)
-        .then((res) => {
-          setProducts(res.data);
-        })
-        .catch((err) => console.error(err));
-    } else {
-      axios
-        .get("https://fakestoreapi.com/products")
-        .then((res) => {
-          setProducts(res.data);
-        })
-        .catch((err) => console.error(err));
-    }
+    const fetchProducts = async () => {
+      try {
+        const response = category
+          ? await axios.get(
+              `https://fakestoreapi.com/products/category/${category}`
+            )
+          : await axios.get("https://fakestoreapi.com/products");
+        setProducts(response.data);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
+    };
+    fetchProducts();
   }, [category]);
 
   const handlePageChange = (pageNumber) => {
@@ -58,6 +58,10 @@ function Products({ category }) {
     indexOfLastProduct
   );
   const totalPages = Math.ceil(products.length / productsPerPage);
+
+  const openProductCard = (productId) => {
+    navigate(`/ProductCard/${productId}`);
+  };
 
   return (
     <div>
@@ -89,15 +93,13 @@ function Products({ category }) {
               className={`btn btn-light grid-view ${
                 viewMode === "grid" ? "active" : ""
               }`}
-              onClick={() => setviewMode("grid")}
+              onClick={() => setViewMode("grid")}
             >
               <i className="bx bxs-grid"></i>
             </button>
             <button
-              className={`btn btn-light list-view ${
-                viewMode === "list" ? "active" : ""
-              }`}
-              onClick={() => setviewMode("list")}
+              className={`btn btn-light ${viewMode === "list" ? "active" : ""}`}
+              onClick={() => setViewMode("list")}
             >
               <i className="bx bx-list-ul"></i>
             </button>
@@ -108,14 +110,14 @@ function Products({ category }) {
               <i className="bx bx-tone"></i>
             </button>
           </div>
-          <div className={`sidebar ${isOpen ? "open" : ""}`}>
-            <div className="position-relative">
+          {isOpen && (
+            <div className="sidebar open">
               <FilterSidebar />
-              <button className="exit" onClick={() => setIsOpen(!isOpen)}>
+              <button className="exit" onClick={() => setIsOpen(false)}>
                 <i className="bx bx-x"></i>
               </button>
             </div>
-          </div>
+          )}
         </div>
       </div>
       <div className="position-relative">
@@ -141,51 +143,31 @@ function Products({ category }) {
                   </div>
                 )}
               </div>
-              {viewMode === "grid" && (
-                <div className="card-body text-center">
-                  <h5 className="card-title">{product.title}</h5>
-                  <div className="price d-flex">
-                    <span className="new-price">${product.price}</span>
-                    <span className="old-price">${product.oldPrice}</span>
-                  </div>
-                  <div className="rating">
-                    {"★".repeat(product.rating.rate)}
-                    {"☆".repeat(5 - product.rating.rate)}
-                  </div>
+              <div className="card-body text-center">
+                <h5
+                  className="card-title"
+                  onClick={() => openProductCard(product.id)}
+                >
+                  {product.title}
+                </h5>
+                <div className="price d-flex">
+                  <span className="new-price">${product.price}</span>
                 </div>
-              )}
-
-              {viewMode === "list" && (
-                <div className="list-view-card d-flex p-3  rounded">
-                  <div className="product-info flex-grow-1">
-                    <div className="price d-flex align-items-center">
-                      <span className="new-price text-danger fw-bold fs-4">
-                        {product.price}
-                      </span>
-                      <span className="old-price text-decoration-line-through text-secondary ms-2">
-                        {product.oldPrice}
-                      </span>
-                    </div>
-                    <p className="description text-muted mt-2">
-                      Nunc facilisis sagittis ullamcorper. Proin lectus ipsum,
-                      gravida et mattis vulputate, tristique ut lectus. Sed et
-                      lectus lorem nunc leifend laoreet.
-                    </p>
-                    <div className="rating">
-                      {"★".repeat(product.rating.rate)}
-                      {"☆".repeat(5 - product.rating.rate)}
-                    </div>
-                    <div className="buttons mt-3 d-flex">
-                      <button className="btn btn-outline-primary d-flex align-items-center">
-                        <i className="bx bx-cart-alt me-2"></i> Add To Cart
-                      </button>
-                      <button className="btn btn-outline-secondary ms-2 d-flex align-items-center">
-                        <i className="bx bx-heart"></i>
-                      </button>
-                    </div>
-                  </div>
+                <div className="rating">
+                  {"★".repeat(Math.round(product.rating.rate)) +
+                    "☆".repeat(5 - Math.round(product.rating.rate))}
                 </div>
-              )}
+                {viewMode == "list" && (
+                  <div className="buttons mt-3 d-flex">
+                    <button className="btn btn-outline-primary d-flex align-items-center">
+                      <i className="bx bx-cart-alt me-2"></i> Add To Cart
+                    </button>
+                    <button className="btn btn-outline-secondary ms-2 d-flex align-items-center">
+                      <i className="bx bx-heart"></i>
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           ))}
         </div>

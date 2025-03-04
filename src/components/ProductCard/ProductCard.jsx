@@ -1,13 +1,28 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./ProductCard.scss";
-import pic from "../../assets/images/slider1.png";
-import pic2 from "../../assets/images/slider1.png";
-import pic3 from "../../assets/images/slider1.png";
-import mac from "../../assets/images/mack.png";
-import cam from "../../assets/images/50051823_540375.png";
 import Footer from "../Footer/Footer";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import mac_1 from "../../assets/images/mack.png";
+import mac_2 from "../../assets/images/Oculus-Rift-profile_grande.png";
 function ProductCard() {
-  const thumbnails = [pic, pic2, pic3, pic];
+  const { productId } = useParams();
+  const [product, setProduct] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get(`https://fakestoreapi.com/products/${productId}`)
+      .then((res) => {
+        setProduct(res.data);
+      })
+      .catch((err) => console.error("Error fetching product:", err));
+  }, [productId]);
+  console.log(product);
+  if (!product) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <>
       <div className="container product-page">
@@ -19,16 +34,16 @@ function ProductCard() {
                   <div className="images d-flex flex-column">
                     <div className="top-image">
                       <img
-                        src={pic}
-                        alt="Product"
+                        src={product.image}
+                        alt={product.title}
                         className="img-fluid current"
                       />
                     </div>
                     <div className="bottom-image d-flex gap-2 prod">
-                      {thumbnails.map((pic, index) => (
+                      {[...Array(4)].map((_, index) => (
                         <div key={index}>
                           <img
-                            src={pic}
+                            src={product.image}
                             alt="Thumbnail"
                             className="img-thumbnail card"
                           />
@@ -39,16 +54,14 @@ function ProductCard() {
                 </div>
                 <div className="right p-3">
                   <div className="title">
-                    <h2>Beats Solo2 On Ear Headphones - Black</h2>
+                    <h2>{product.title}</h2>
                     <div className="review d-flex">
-                      <span>0 reviews</span>
-                      <a href="#">Submit a review</a>
+                      <span>{product.rating.count} reviews</span>
                     </div>
                   </div>
                   <div className="info">
                     <div className="d-flex price gap-2">
-                      <p className="current-price">$499</p>
-                      <p className="old-price">$599</p>
+                      <p className="current-price">${product.price}</p>
                     </div>
                     <div className="child">
                       <div className="d-flex justify-content-between">
@@ -169,13 +182,7 @@ function ProductCard() {
                     role="tabpanel"
                     aria-labelledby="product-info-tab"
                   >
-                    <p>
-                      Nunc facilisis sagittis ullamcorper. Proin lectus ipsum,
-                      gravida et mattis vulputate, tristique et lectus. Sed et
-                      lorem nunc. Vestibulum ante ipsum primis in faucibus orci
-                      luctus et ultrices posuere cubilia Curae; Aenean eleifend
-                      laoreet congue.
-                    </p>
+                    <p>{product.description}</p>
                     <p>
                       Vivamus adipiscing nisl ut dolor dignissim semper. Nulla
                       luctus malesuada tincidunt. Class aptent taciti sociosqu
@@ -204,10 +211,10 @@ function ProductCard() {
               </div>
             </div>
           </div>
-          <div className="col-lg-2">
+          <div className="col-lg-2 right-page">
             <div className="best-seller card">
               <h4>Best Seller</h4>
-              <img src={mac} alt="MacBook Pro" className="img-fluid " />
+              <img src={mac_1} alt="MacBook Pro" className="img-fluid " />
               <p>Apple MacBook Pro</p>
               <p className="price">
                 <span className="current-price">$499</span>{" "}
@@ -221,12 +228,11 @@ function ProductCard() {
               <h4>GoPro Hero 6</h4>
               <p>Lorem ipsum dolor sit amet.</p>
               <p className="price">$299</p>
-              <img src={cam} alt="GoPro Hero 6" className="img-fluid " />
+              <img src={mac_2} alt="GoPro Hero 6" className="img-fluid " />
             </div>
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 }

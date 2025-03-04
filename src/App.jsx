@@ -12,6 +12,7 @@ import Electronics from "./pages/Electronics/Electronics";
 import Jewelery from "./pages/Jewelery/Jewelery";
 import MensClothing from "./pages/MensClothing/MensClothing";
 import Footer from "./components/Footer/Footer";
+import ProductCard from "./components/ProductCard/ProductCard";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/:category" element={<Electronics />} />
           <Route path="/:category" element={<Jewelery />} />
           <Route path="/:category" element={<MensClothing />} />
+          <Route path="/ProductCard/:productId" element={<ProductCard />} />
         </Routes>
         <Footer />
       </BrowserRouter>

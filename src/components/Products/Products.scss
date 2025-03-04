@@ -91,7 +91,7 @@ $dark-gray: #6c757d;
         }
 
         .image {
-            width: 220px;
+            width: 120px;
 
             @media (max-width:767px) {
                 & {
@@ -209,6 +209,7 @@ $dark-gray: #6c757d;
             font-size: 15px;
             font-weight: 600;
             color: #333;
+            cursor: pointer;
         }
 
         .price {
