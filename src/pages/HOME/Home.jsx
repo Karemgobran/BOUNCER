@@ -9,6 +9,7 @@ import SearchButton from "../../components/Search Button/SearchButton";
 import PopupDialog from "../../components/Dialog/PopupDialog";
 
 function Home() {
+  localStorage.setItem("userId", "1");
   const [showDialog, setShowDialog] = useState(false);
 
   useEffect(() => {

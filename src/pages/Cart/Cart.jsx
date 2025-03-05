@@ -13,32 +13,36 @@ const Cart = () => {
   useEffect(() => {
     async function fetchCart() {
       try {
-        const res = await axios.get("https://fakestoreapi.com/carts/1");
-        const products = res.data.products;
-        const productRequests = products.map((item) =>
-          axios.get(`https://fakestoreapi.com/products/${item.productId}`)
-        );
+        const userId = localStorage.getItem("userId");
+        const res = await axios.get(`https://fakestoreapi.com/carts/${userId}`);
 
-        const productResponses = await Promise.all(productRequests);
-        const detailedProducts = products.map((item, index) => {
-          const productData = productResponses[index].data;
-          return {
-            id: item.productId,
-            name: productData.title,
-            price: productData.price,
-            quantity: item.quantity,
-            image: productData.image,
-          };
-        });
+        if (res.data && res.data.products && res.data.products.length > 0) {
+          const products = res.data.products;
+          const productRequests = products.map((item) =>
+            axios.get(`https://fakestoreapi.com/products/${item.productId}`)
+          );
 
-        setCartItems(detailedProducts);
+          const productResponses = await Promise.all(productRequests);
+          const detailedProducts = products.map((item, index) => {
+            const productData = productResponses[index].data;
+            return {
+              id: item.productId,
+              name: productData.title,
+              price: productData.price,
+              quantity: item.quantity,
+              image: productData.image,
+            };
+          });
+
+          setCartItems(detailedProducts); // تحديث السلة هنا
+        }
       } catch (err) {
         console.error("Error fetching cart data:", err);
       }
     }
 
-    fetchCart();
-  }, []);
+    fetchCart(); // يتم جلب السلة عند تحميل الصفحة فقط
+  }, []); // إزالة cartItems من الاعتماد هنا
 
   const updateQuantity = (id, amount) => {
     setCartItems((prevItems) =>

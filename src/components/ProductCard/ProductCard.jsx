@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import mac_1 from "../../assets/images/mack.png";
 import mac_2 from "../../assets/images/Oculus-Rift-profile_grande.png";
+import { toast } from "react-toastify";
+import AddToCard from "../AddToCard/AddToCard";
 function ProductCard() {
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
@@ -20,6 +22,16 @@ function ProductCard() {
   }, [productId]);
   if (!product) {
     return <div>Loading...</div>;
+  }
+
+  async function addToCard() {
+    try {
+      const res = await AddToCard(product.id);
+      if (res.status === 200) toast.success("Product added to cart");
+    } catch (err) {
+      console.error(err);
+      toast.error("Error adding product to cart");
+    }
   }
 
   return (
@@ -108,7 +120,10 @@ function ProductCard() {
                     </div>
                   </div>
                   <div className="buttons mt-3 d-flex">
-                    <button className="btn btn-outline-primary d-flex align-items-center">
+                    <button
+                      onClick={addToCard}
+                      className="btn btn-outline-primary d-flex align-items-center"
+                    >
                       <i className="bx bx-cart-alt me-2"></i> Add To Cart
                     </button>
                     <button className="btn btn-outline-secondary ms-2 d-flex align-items-center">

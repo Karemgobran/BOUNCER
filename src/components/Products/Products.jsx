@@ -6,12 +6,16 @@ import { useRef, useState, useEffect } from "react";
 import FilterSidebar from "../FilterSidebar/FilterSidebar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import AddToCard from "../AddToCard/AddToCard";
+import { toast } from "react-toastify";
+import Loader from "../Loader/Loader";
 
 function Products({ category }) {
   const scrollRef = useRef(null);
   const [viewMode, setViewMode] = useState("grid");
   const [isOpen, setIsOpen] = useState(false);
   const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true); // إضافة حالة التحميل
   const [currentPage, setCurrentPage] = useState(1);
   const productsPerPage = 12;
   const navigate = useNavigate();
@@ -33,16 +37,24 @@ function Products({ category }) {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = category
-          ? await axios.get(
-              `https://fakestoreapi.com/products/category/${category}`
-            )
-          : await axios.get("https://fakestoreapi.com/products");
-        setProducts(response.data);
+        setLoading(true); // تعيين التحميل إلى true قبل بدء جلب البيانات
+
+        // إضافة تأخير 3 ثواني قبل جلب البيانات
+        setTimeout(async () => {
+          const response = category
+            ? await axios.get(
+                `https://fakestoreapi.com/products/category/${category}`
+              )
+            : await axios.get("https://fakestoreapi.com/products");
+          setProducts(response.data);
+          setLoading(false); // تعيين التحميل إلى false بعد إتمام الجلب
+        }, 3000); // تأخير 3 ثواني
       } catch (error) {
         console.error("Error fetching products:", error);
+        setLoading(false); // تعيين التحميل إلى false في حالة حدوث خطأ
       }
     };
+
     fetchProducts();
   }, [category]);
 
@@ -62,6 +74,17 @@ function Products({ category }) {
   const openProductCard = (productId) => {
     navigate(`/ProductCard/${productId}`);
   };
+
+  async function addToCard(productId) {
+    // تمرير productId هنا
+    try {
+      const res = await AddToCard(productId); // استخدم productId المرسل
+      if (res.status == 200) toast.success("Product added");
+    } catch (err) {
+      console.error(err);
+      toast.error("Error adding product to cart");
+    }
+  }
 
   return (
     <div>
@@ -121,56 +144,66 @@ function Products({ category }) {
         </div>
       </div>
       <div className="position-relative">
-        <div
-          className={`products-container d-flex ${viewMode}`}
-          ref={scrollRef}
-        >
-          {currentProducts.map((product) => (
-            <div
-              key={product.id}
-              className="product-card card shadow-sm border-0 p-3 overflow-hidden"
-            >
-              <div className="image overflow-hidden position-relative">
-                <img
-                  src={product.image}
-                  className="card-img-top w-100"
-                  alt={product.title}
-                />
-                {viewMode === "grid" && (
-                  <div className="Card-hover d-flex justify-content-center w-100 h-100 gap-2 position-absolute align-items-center">
-                    <i className="bx bx-heart"></i>
-                    <i className="bx bx-cart-alt"></i>
-                  </div>
-                )}
-              </div>
-              <div className="card-body text-center">
-                <h5
-                  className="card-title"
-                  onClick={() => openProductCard(product.id)}
-                >
-                  {product.title}
-                </h5>
-                <div className="price d-flex">
-                  <span className="new-price">${product.price}</span>
-                </div>
-                <div className="rating">
-                  {"★".repeat(Math.round(product.rating.rate)) +
-                    "☆".repeat(5 - Math.round(product.rating.rate))}
-                </div>
-                {viewMode == "list" && (
-                  <div className="buttons mt-3 d-flex">
-                    <button className="btn btn-outline-primary d-flex align-items-center">
-                      <i className="bx bx-cart-alt me-2"></i> Add To Cart
-                    </button>
-                    <button className="btn btn-outline-secondary ms-2 d-flex align-items-center">
+        {loading ? ( // عرض اللودر إذا كانت البيانات لا تزال قيد التحميل
+          <Loader />
+        ) : (
+          <div
+            className={`products-container d-flex ${viewMode}`}
+            ref={scrollRef}
+          >
+            {currentProducts.map((product) => (
+              <div
+                key={product.id}
+                className="product-card card shadow-sm border-0 p-3 overflow-hidden"
+              >
+                <div className="image overflow-hidden position-relative">
+                  <img
+                    src={product.image}
+                    className="card-img-top w-100"
+                    alt={product.title}
+                  />
+                  {viewMode === "grid" && (
+                    <div className="Card-hover d-flex justify-content-center w-100 h-100 gap-2 position-absolute align-items-center">
                       <i className="bx bx-heart"></i>
-                    </button>
+                      <i
+                        onClick={() => addToCard(product.id)}
+                        className="bx bx-cart-alt"
+                      ></i>
+                    </div>
+                  )}
+                </div>
+                <div className="card-body text-center">
+                  <h5
+                    className="card-title"
+                    onClick={() => openProductCard(product.id)}
+                  >
+                    {product.title}
+                  </h5>
+                  <div className="price d-flex">
+                    <span className="new-price">${product.price}</span>
                   </div>
-                )}
+                  <div className="rating">
+                    {"★".repeat(Math.round(product.rating.rate)) +
+                      "☆".repeat(5 - Math.round(product.rating.rate))}
+                  </div>
+                  {viewMode == "list" && (
+                    <div className="buttons mt-3 d-flex">
+                      <button
+                        onClick={() => addToCard(product.id)}
+                        className="btn btn-outline-primary d-flex align-items-center"
+                      >
+                        <i className="bx bx-cart-alt me-2"></i> Add To Cart
+                      </button>
+                      <button className="btn btn-outline-secondary ms-2 d-flex align-items-center">
+                        <i className="bx bx-heart"></i>
+                      </button>
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
         {viewMode === "grid" && (
           <>
             <button className="scroll-btn left" onClick={() => scroll("left")}>

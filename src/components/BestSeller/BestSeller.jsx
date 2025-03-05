@@ -5,7 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import AddToCard from "../AddToCard/AddToCard";
+import { toast } from "react-toastify";
 function BestSeller() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [categories, setCategories] = useState(["All"]); // ✅ تصحيح الحالة
@@ -37,8 +38,6 @@ function BestSeller() {
   const openProductCard = (productId) => {
     navigate(`/ProductCard/${productId}`);
   };
-
-  console.log(products);
 
   useEffect(() => {
     getProducts();
@@ -72,6 +71,15 @@ function BestSeller() {
     );
   };
 
+  async function addToCard(productId) {
+    try {
+      const res = await AddToCard(productId);
+      if (res.status == 200) toast.success("Product added");
+    } catch (err) {
+      console.error(err);
+      toast.error("Error adding product to cart");
+    }
+  }
   return (
     <div className="best-seller container py-4 position-relative">
       <h2 className="text-center">BEST SELLER</h2>
@@ -103,7 +111,10 @@ function BestSeller() {
               />
               <div className="Card-hover d-flex justify-content-center w-100 h-100 gap-2 position-absolute align-items-center">
                 <i className="bx bx-heart"></i>
-                <i className="bx bx-cart-alt"></i>
+                <i
+                  onClick={() => addToCard(product.id)}
+                  className="bx bx-cart-alt"
+                ></i>
               </div>
             </div>
             <div className="card-body text-center">

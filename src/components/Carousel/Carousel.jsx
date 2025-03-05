@@ -38,7 +38,7 @@ function Carousel() {
             <div className="carousel-item active">
               <div className="data d-flex align-items-center">
                 <div className="info">
-                  <h2>iPhone X</h2>
+                  <h2>iPhone X - 1</h2>
                   <p>
                     Lorem Ipsum is simply dummy text of the printing and
                     typesetting industry. Lorem Ipsum has been the industry's
@@ -54,7 +54,7 @@ function Carousel() {
             <div className="carousel-item">
               <div className="data d-flex align-items-center">
                 <div className="info">
-                  <h2>iPhone X</h2>
+                  <h2>iPhone X - 2</h2>
                   <p>
                     Lorem Ipsum is simply dummy text of the printing and
                     typesetting industry. Lorem Ipsum has been the industry's
@@ -70,7 +70,7 @@ function Carousel() {
             <div className="carousel-item">
               <div className="data d-flex align-items-center">
                 <div className="info">
-                  <h2>iPhone X</h2>
+                  <h2>iPhone X - 3</h2>
                   <p>
                     Lorem Ipsum is simply dummy text of the printing and
                     typesetting industry. Lorem Ipsum has been the industry's
