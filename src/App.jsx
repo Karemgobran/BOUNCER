@@ -7,7 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import WomenClothing from "./pages/WomenClothing/WomenClothing";
-import Store from "./pages/store/store";
+import Store from "./pages/Store/Store";
 import Electronics from "./pages/Electronics/Electronics";
 import Jewelery from "./pages/Jewelery/Jewelery";
 import MensClothing from "./pages/MensClothing/MensClothing";
