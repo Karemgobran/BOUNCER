@@ -3,3 +3,104 @@
     padding: 19px;
     box-shadow: inset -1px 0px 13px #d2c9c9;
 }
+
+/* Cart.scss */
+
+/* جعل التنسيق مرن عند الشاشات الصغيرة */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem;
+    }
+
+    .table td,
+    .table th {
+        font-size: 0.9rem;
+    }
+
+    .table img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .table .d-flex {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .table .fw-bold {
+        font-size: 0.85rem;
+    }
+
+    .d-flex {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .d-flex .w-50 {
+        width: 100%;
+    }
+
+    .d-flex .text-end {
+        text-align: left;
+        margin-top: 1rem;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .form-control {
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .container {
+        padding: 0.5rem;
+    }
+
+    .table td,
+    .table th {
+        font-size: 0.8rem;
+    }
+
+    .btn {
+        font-size: 0.85rem;
+    }
+
+    .fw-bold {
+        font-size: 0.75rem;
+    }
+
+    .table .d-flex {
+        gap: 10px;
+    }
+
+    .table img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .d-flex .w-50 {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .d-flex .text-end {
+        margin-top: 0.5rem;
+        width: 100%;
+
+        .fw-bold {
+            display: flex;
+            justify-content: space-between;
+
+            span {
+                color: rgb(61, 26, 205);
+            }
+
+        }
+    }
+}
