@@ -60,7 +60,7 @@ const Cart = () => {
   };
 
   const applyVoucher = () => {
-    if (voucher === "karem") {
+    if (voucher === "DISCOUNT10") {
       setDiscount(10);
       toast.success("Voucher applied successfully!");
     } else {
@@ -146,18 +146,12 @@ const Cart = () => {
         </div>
 
         <div className="text-end">
+          <p className="fw-bold">Subtotal: ${subtotal.toFixed(2)}</p>
+          <p className="fw-bold">Shipping fee: ${shippingFee}</p>
           <p className="fw-bold">
-            <span>Subtotal:</span> ${subtotal.toFixed(2)}
+            Coupon: {discount > 0 ? `-$${discount}` : "No"}
           </p>
-          <p className="fw-bold">
-            <span>Shipping fee:</span> ${shippingFee}
-          </p>
-          <p className="fw-bold">
-            <span>Coupon:</span> {discount > 0 ? `-$${discount}` : "No"}
-          </p>
-          <h4 className="fw-bold">
-            <span>TOTAL:</span> ${total.toFixed(2)}
-          </h4>
+          <h4 className="fw-bold">TOTAL: ${total.toFixed(2)}</h4>
           <button className="btn btn-primary btn-lg mt-3">Check out</button>
         </div>
       </div>
