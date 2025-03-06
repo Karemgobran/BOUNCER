@@ -3,3 +3,40 @@
     padding: 19px;
     box-shadow: inset -1px 0px 13px #d2c9c9;
 }
+
+.voucher {
+    width: 50%;
+}
+
+.cart-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width:767px) {
+    .cart-price {
+        flex-direction: column;
+        gap: 15px;
+
+        .voucher {
+            width: 100%;
+            display: flex;
+
+            justify-content: center;
+            align-items: center;
+        }
+    }
+
+    .text-end {
+        width: 100%;
+
+        .fw-bold {
+            display: flex;
+            justify-content: space-between;
+
+            span {
+                color: rgb(45, 75, 198);
+            }
+        }
+    }
+}

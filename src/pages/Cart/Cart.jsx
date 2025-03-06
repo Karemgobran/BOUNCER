@@ -34,15 +34,15 @@ const Cart = () => {
             };
           });
 
-          setCartItems(detailedProducts); // تحديث السلة هنا
+          setCartItems(detailedProducts);
         }
       } catch (err) {
         console.error("Error fetching cart data:", err);
       }
     }
 
-    fetchCart(); // يتم جلب السلة عند تحميل الصفحة فقط
-  }, []); // إزالة cartItems من الاعتماد هنا
+    fetchCart();
+  }, []);
 
   const updateQuantity = (id, amount) => {
     setCartItems((prevItems) =>
@@ -77,62 +77,65 @@ const Cart = () => {
   return (
     <div className="container my-5 p-4 shadow-lg rounded bg-light">
       <h2 className="mb-4 text-center">Shopping Cart</h2>
-      <table className="table table-striped text-center">
-        <thead className="table-dark">
-          <tr>
-            <th>Product</th>
-            <th>Price</th>
-            <th>Qty</th>
-            <th>Total</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {cartItems.map((item) => (
-            <tr key={item.id}>
-              <td className="d-flex align-items-center gap-3">
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className="rounded-circle border"
-                  style={{ width: "70px", height: "70px" }}
-                />
-                {item.name}
-              </td>
-              <td className="fw-bold">${item.price.toFixed(2)}</td>
-              <td>
-                <button
-                  className="btn btn-outline-primary btn-sm"
-                  onClick={() => updateQuantity(item.id, -1)}
-                >
-                  -
-                </button>
-                <span className="mx-2 fw-bold">{item.quantity}</span>
-                <button
-                  className="btn btn-outline-primary btn-sm"
-                  onClick={() => updateQuantity(item.id, 1)}
-                >
-                  +
-                </button>
-              </td>
-              <td className="fw-bold">
-                ${(item.price * item.quantity).toFixed(2)}
-              </td>
-              <td>
-                <button
-                  className="btn btn-danger btn-sm"
-                  onClick={() => removeItem(item.id)}
-                >
-                  X
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
 
-      <div className="d-flex justify-content-between align-items-center p-3 border-top">
-        <div className="w-50">
+      <div className="cart-table-wrapper">
+        <table className="table table-striped text-center">
+          <thead className="table-dark">
+            <tr>
+              <th>Product</th>
+              <th>Price</th>
+              <th>Qty</th>
+              <th>Total</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {cartItems.map((item) => (
+              <tr key={item.id}>
+                <td className="d-flex align-items-center gap-3">
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="rounded-circle border"
+                    style={{ width: "70px", height: "70px" }}
+                  />
+                  {item.name}
+                </td>
+                <td className="fw-bold">${item.price.toFixed(2)}</td>
+                <td>
+                  <button
+                    className="btn btn-outline-primary btn-sm"
+                    onClick={() => updateQuantity(item.id, -1)}
+                  >
+                    -
+                  </button>
+                  <span className="mx-2 fw-bold">{item.quantity}</span>
+                  <button
+                    className="btn btn-outline-primary btn-sm"
+                    onClick={() => updateQuantity(item.id, 1)}
+                  >
+                    +
+                  </button>
+                </td>
+                <td className="fw-bold">
+                  ${(item.price * item.quantity).toFixed(2)}
+                </td>
+                <td>
+                  <button
+                    className="btn btn-danger btn-sm"
+                    onClick={() => removeItem(item.id)}
+                  >
+                    X
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <div className="d-flex justify-content-between align-items-center p-3 border-top cart-price">
+        <div className="voucher ">
           <input
             type="text"
             className="form-control d-inline w-75"
@@ -146,12 +149,18 @@ const Cart = () => {
         </div>
 
         <div className="text-end">
-          <p className="fw-bold">Subtotal: ${subtotal.toFixed(2)}</p>
-          <p className="fw-bold">Shipping fee: ${shippingFee}</p>
           <p className="fw-bold">
-            Coupon: {discount > 0 ? `-$${discount}` : "No"}
+            <span>Subtotal:</span> ${subtotal.toFixed(2)}
           </p>
-          <h4 className="fw-bold">TOTAL: ${total.toFixed(2)}</h4>
+          <p className="fw-bold">
+            <span>Shipping fee:</span> ${shippingFee}
+          </p>
+          <p className="fw-bold">
+            <span>Coupon:</span> {discount > 0 ? `-$${discount}` : "No"}
+          </p>
+          <h4 className="fw-bold">
+            <span>TOTAL:</span> ${total.toFixed(2)}
+          </h4>
           <button className="btn btn-primary btn-lg mt-3">Check out</button>
         </div>
       </div>
